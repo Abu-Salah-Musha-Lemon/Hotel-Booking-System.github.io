@@ -46,52 +46,5 @@
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-	<script>
-		var swiper = new Swiper(".swiper-container", {
-			spaceBetween: 30,
-			effect: "fade",
-			loop: true,
-			autoplay: {
-				delay: 3500,
-				disableOnInteraction: false
-			}
+	
 
-		});
-		var swiper = new Swiper(".swiper_testimonial", {
-      effect: "coverflow",
-      grabCursor: true,
-      centeredSlides: true,
-      slidesPerView: "auto",
-			sliderPreView:"3",
-			loop:true,
-      coverflowEffect: {
-        rotate: 50,
-        stretch: 0,
-        depth: 100,
-        modifier: 1,
-        slideShadows: false,
-      },
-      pagination: {
-        el: ".swiper-pagination",
-      },
-			breakpoints:{
-				320:{
-					sliderPreView:1,
-				},
-				640:{
-					sliderPreView:1,
-				},
-				768:{
-					sliderPreView:2,
-				},
-			
-				1024:{
-					sliderPreView:3,
-				},
-			}
-    });
-	</script>
-
-</body>
-
-</html>

@@ -1,6 +1,6 @@
 :root{
-    --tele:#2ec1ac;
-    --tele-hover:#279e8c;
+    --teal:#2ec1ac;
+    --teal-hover:#279e8c;
 }
 
 * {
@@ -23,9 +23,14 @@ input[type=number] {
 }
 
 .custom-bg {
-    background-color: var(--tele);
+    background-color: var(--teal);
 }
 
 .custom-bg:hover {
-    background-color: var(--tele-hover);
+    background-color: var(--teal-hover);
+}
+.h-line{
+    width: 150px;
+    margin: 0 auto;
+    height: 1.7px;
 }
