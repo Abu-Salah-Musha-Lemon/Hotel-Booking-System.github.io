@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php header("Refresh:2");?>
+<?php // header("Refresh:2");?>
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -83,6 +83,7 @@
 						<lable class="form-lable" style="font-weight: 500;">Massage</lable>
 						<textarea name="" id="" cols="30" rows="6" style="resize: none;" class="form-control shadow-none"></textarea>
 					</div>
+					<button type="submit" class="btn -text-white custom-bg mt-3 shadow-none"> Send</button>
 				</form>
 			</div>
 		</div>
