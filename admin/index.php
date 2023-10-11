@@ -1,6 +1,11 @@
 <?php
 include_once './inc/config.php';
+include_once './inc/essential.php';
+session_start();
 
+if (isset($_SESSION['adminLogin'])&& $_SESSION['adminLogin']==true) { 
+ redirect('dashboard.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,15 +34,39 @@ include_once './inc/config.php';
       <h4 class="bg-dark text-white py-2">ADMIN LOG IN </h4>
       <div class="p-4">
         <div class="mb-4">
-          <input type="text" name="" id="" class="form-control shadow-none ">
+          <input type="text" name="admin_name" id="" class="form-control shadow-none ">
         </div>
         <div class="mb-4">
-          <input type="password" name="" id="" class="form-control shadow-none ">
+          <input type="password" name="admin_pass" id="" class="form-control shadow-none ">
         </div>
-        <button type="submit" class="btn  custom-bg shadow-none">Log in</button>
+        <button type="submit" class="btn  custom-bg shadow-none" name="login">Log in</button>
       </div>
     </form>
   </div>
+<?php 
+if(isset($_POST['login'])){
+  $frm_data = filteration($_POST);
+  
+  $query = "SELECT * FROM `admin` WHERE `admin_name`=? AND `admin_pass`=? ";
+  $value = [$frm_data['admin_name'], $frm_data['admin_pass']];
+  $datatypes='ss';
+  $res = select($query, $value,$datatypes);
+  if($res-> num_rows==1){
+    $row = mysqli_fetch_assoc($res);
+    $_SESSION['adminLogin']= true;
+    $_SESSION['adminId']=$row['sr_no'];
+    redirect('dashboard.php');
+  }else{
+    alert('error','loin failed -Invalid Credentials');
+  }
+}
+ 
+
+
+?>
+
+
+  <?php require_once "./inc/script.php"?>
 </body>
 
 </html>
