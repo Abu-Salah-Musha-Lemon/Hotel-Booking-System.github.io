@@ -8,8 +8,6 @@
 	<title>ASML Hotel - Home</title>
 	<?php include_once "./inc/link.php"?>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-
-
 	<style>
 		.availability-form {
 			margin-top: -50px;

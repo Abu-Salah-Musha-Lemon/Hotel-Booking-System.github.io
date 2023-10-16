@@ -21,7 +21,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
-
+ 
 .custom-bg {
     background-color: var(--teal);
 }
@@ -33,4 +33,14 @@ input[type=number] {
     width: 150px;
     margin: 0 auto;
     height: 1.7px;
+}
+
+@media screen and (max-width:990px) {
+    #dashboard_menu{
+        height: auto;
+        width: 100%;
+    }
+    #main-content{
+        margin-top: 62px;
+    }
 }
