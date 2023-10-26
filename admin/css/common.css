@@ -29,12 +29,21 @@ input[type=number] {
 .custom-bg:hover {
     background-color: var(--teal-hover);
 }
+.custom-alert{
+    position: fixed;
+    float: right;
+    top: 90px;
+    right: 25px;
+}
 .h-line{
     width: 150px;
     margin: 0 auto;
     height: 1.7px;
 }
-
+.dashboard_menu_left{
+    position: fixed;
+    height: 100%;
+}
 @media screen and (max-width:990px) {
     #dashboard_menu{
         height: auto;
