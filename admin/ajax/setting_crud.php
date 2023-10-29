@@ -21,7 +21,7 @@ if (isset($_POST['upd_general'])) {
 }
 
 if (isset($_POST['upd_shutdown'])) {
- $frm_data = ($_POST['upd_shutdown']==0) ? 1:0;
+ $frm_data = ($_POST['upd_shutdown']==0) ?1:0;
  $query = "UPDATE `setting` SET `shutdown_db`=? WHERE `sr_no`=?";
  $values = [$frm_data,1]; 
  $res = update($query,$values,'ii');

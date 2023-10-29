@@ -156,12 +156,12 @@ adminLogin();
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
 
       xhr.onload = function() {
-        if (this.responseText == 1&& general_data.shutdown_db ==0) {
-        alert('success', ' Site has been  Shutdown!')
-      } else {
-        alert('Success', 'Shutdown off successfully !')
-      }
-      get_general()
+          if (this.responseText == 1 && general_data.shutdown_db == 0 ) {
+          alert('success', ' Site has been  Shutdown!')
+        } else {
+          alert('Success', 'Shutdown off successfully !')
+        }
+        get_general()
         
       }
 
