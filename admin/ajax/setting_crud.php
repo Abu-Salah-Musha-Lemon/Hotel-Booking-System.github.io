@@ -27,3 +27,14 @@ if (isset($_POST['upd_shutdown'])) {
  $res = update($query,$values,'ii');
   echo $res;
 }
+
+
+
+if (isset($_POST['get_contacts'])) {
+  $query = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
+  $value =[1];
+  $res = select($query,$value, 'i');
+  $data = mysqli_fetch_assoc($res);
+  $json_data= json_encode($data);
+  echo $json_data;
+}

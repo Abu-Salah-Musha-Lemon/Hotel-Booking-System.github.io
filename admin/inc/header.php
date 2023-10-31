@@ -2,7 +2,7 @@
   <h3 class="mb-0 h-font">ASML website</h3>
   <a href="logout.php" class="btn btn-light btn-sm">Logout</a>
 </div> 
-<div class="col-lg-2 bg-dark border-top border-3 border-secoundary dashboard_menu_left" id="dashboard_menu">
+<div class="col-lg-2 bg-dark border-top border-3 border-secondary dashboard_menu_left" id="dashboard_menu">
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid flex-lg-column align-items-stretch">
       <h4 class="mt-2 text-light">ADMIN PANEL</h4>

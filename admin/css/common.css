@@ -40,14 +40,16 @@ input[type=number] {
     margin: 0 auto;
     height: 1.7px;
 }
-.dashboard_menu_left{
+.dashboard_menu_left {
     position: fixed;
     height: 100%;
+    z-index: 1;
 }
 @media screen and (max-width:990px) {
     #dashboard_menu{
         height: auto;
         width: 100%;
+        z-index: 1;
     }
     #main-content{
         margin-top: 62px;

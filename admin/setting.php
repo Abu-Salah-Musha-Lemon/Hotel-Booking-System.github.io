@@ -30,7 +30,7 @@ adminLogin();
           <div class="card-body">
             <div class="d-flex align-item-center justify-content-between">
               <h5 class="card-title m-0">General Setting</h5>
-              <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-3" data-bs-toggle="modal" data-bs-target="#genertal_s">
+              <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-3" data-bs-toggle="modal" data-bs-target="#general_s">
                 <i class="bi bi-pencil-square"></i>Edit
               </button>
             </div>
@@ -40,8 +40,10 @@ adminLogin();
             <p class="card-text" id="site_about"></p>
           </div>
         </div>
+        
+        <!-- form modal  -->
 
-        <div class="modal fade" id="genertal_s" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="general_s" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <form class="general_s_form">
@@ -52,14 +54,14 @@ adminLogin();
                 <div class="modal-body">
                   <div class="mb-4">
                     <label class="form-label fw-bold">Site Title</label>
-                    <input type="text" name="site_title_inp" id="site_title_inp" class="form-control shadow-none">
+                    <input type="text" name="site_title_inp" id="site_title_inp" class="form-control shadow-none" required>
                   </div>
                   <div class="mb-3">
                     <label class="form-label fw-bold">About</label>
-                    <textarea name="" name="site_about_inp" id="site_about_inp" cols="0" rows="1" class="form-control shadow-none"></textarea>
+                    <textarea name="" name="site_about_inp" id="site_about_inp" cols="0" rows="1" class="form-control shadow-none" required></textarea>
                   </div>
                   <div class="modal-footer">
-                    <button type="submit" onclick="site_title_inp.value = general_data.site_title_db, site_about_inp.value= general_data.site_about_db" class="btn text-secoundary shadow-none" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" onclick="site_title_inp.value = general_data.site_title_db, site_about_inp.value= general_data.site_about_db" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn custom-bg text-green shadow-none">Submit</button>
 
                   </div>
@@ -69,6 +71,7 @@ adminLogin();
           </div>
         </div>
         <!-- shutdown section -->
+
         <div class="card rounded shadow-sm mb-4">
           <div class="card-body">
             <div class="d-flex align-item-center justify-content-between">
@@ -83,6 +86,79 @@ adminLogin();
             <p class="card-text">No customer will be allowed to book hotel room, when shutdown </p>
           </div>
         </div>
+
+        <!-- contract details setting -->
+
+        <div class="card rounded shadow-sm mb-4">
+          <div class="card-body">
+            <div class="d-flex align-item-center justify-content-between">
+              <h5 class="card-title m-0">Contract Details</h5>
+              <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-3" data-bs-toggle="modal" data-bs-target="#contracts_s">
+                <i class="bi bi-pencil-square"></i> Edit
+              </button>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                  <div class="mb-4">
+                    <h6 class="card-subtitle mb-1 fw-bold">Address </h6>
+                    <p class="card-text" id="address"></p>
+                  </div>
+
+                  <div class="mb-4">
+                    <h6 class="card-subtitle mb-1 fw-bold">Google Maps </h6>
+                    <p class="card-text" id="gmap"></p>
+                  </div>
+                
+                  <div class="mb-4">
+                    <h6 class="card-subtitle mb-1 fw-bold">Phone Number </h6>
+                    <p class="card-text">
+                    <i class="bi bi-telephone-fill fs-6 text-info"></i>
+                    <span id="pn1"></span>
+                    </p>
+
+                    <p class="card-text">
+                    <i class="bi bi-telephone-fill fs-6 text-info"></i>
+                    <span id="pn2"></span>
+                    </p>
+                  </div>
+
+                  
+                  <div class="mb-4">
+                    <h6 class="card-subtitle mb-1 fw-bold">Email</h6>
+                    <p class="card-text" id="email"></p>
+                  </div>
+              </div>
+
+              <div class="col-lg-6">
+        
+                  <div class="mb-4">
+                    <h6 class="card-subtitle mb-1 fw-bold">Social Link </h6>
+                    <p class="card-text">
+                    <i class="bi bi-facebook px-2 me-1"></i>
+                    <span id="fb"></span>
+                    </p>
+
+                    <p class="card-text">
+                    <i class="bi bi-twitter px-2 me-1"></i>
+                    <span id="insta"></span>
+                    </p>
+
+                    <p class="card-text">
+                    <i class="bi bi-instagram px-2 me-1"></i>
+                    <span id="tw"></span>
+                    </p>
+                  </div>
+
+                  <div class="mb-4">
+                    <h6 class="card-subtitle mb-1 fw-bold">Iframe</h6>
+                    <iframe id="iframe" class="border p-2 m-100" loading= "lazy" src="" frameborder="0"></iframe>
+                  </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -90,10 +166,14 @@ adminLogin();
   <?php require_once './inc/script.php' ?>
 
   <script>
-      let general_data;
-      let general_s_form = document.getElementsByClassName('general_s_form')
+      let general_data, contacts_data;
+      let general_s_form = document.querySelector('.general_s_form'); 
       let site_title_inp = document.getElementById('site_title_inp');
       let site_about_inp = document.getElementById('site_about_inp');
+      general_s_form.addEventListener('submit',function(e){
+        e.preventDefault()
+        upd_general(site_title_inp.value, site_about_inp.value)
+      })
     function get_general() {
       let site_title = document.getElementById('site_title');
       let site_about = document.getElementById('site_about');
@@ -122,18 +202,12 @@ adminLogin();
       xhr.send('get_general')
     }
 
-    general_s_form.addEventListener('submit',function(e){
-      e.preventDefault()
-      upd_general(site_title_inp.value, site_about_inp.value)
-    })
-
-
     function upd_general(site_title_inp_val, site_about_inp_val) {
       let xhr = new XMLHttpRequest();
 
       xhr.open('POST', "ajax/setting_crud.php", true)
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-      let myModal = document.getElementById('genertal_s')
+      let myModal = document.getElementById('general_s')
       let modal = bootstrap.Modal.getInstance(myModal)
       modal.hide()
       if (this.responseText == 1) {
@@ -167,8 +241,40 @@ adminLogin();
 
       xhr.send('upd_shutdown='+val)
     }
+
+    // contacts data setting 
+
+    function get_contacts() {
+
+      let contacts_p_id = ['address', 'gmap', 'pn1','pn2','email','fb','insta', 'tw']
+      let iframe = document.getElementById('iframe')
+
+      let xhr = new XMLHttpRequest();
+
+      xhr.open('POST', "ajax/setting_crud.php", true)
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+
+      xhr.onload = function() {
+        contacts_data = JSON.parse(this.responseText);
+        contacts_data = Object.values(contacts_data)
+
+        for (let i = 0; i < contacts_data.length; i++) {
+          
+          document.getElementById(contacts_p_id[i]).innerHTML = contacts_data[i+1];
+          
+        }
+        
+        iframe.src = contacts_data[9]
+
+        console.log(contacts_data)
+
+      }
+      xhr.send('get_contacts')
+    }
+
     window.onload = function() {
       get_general()
+      get_contacts()
     }
   </script>
 </body>
