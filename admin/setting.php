@@ -61,7 +61,7 @@ adminLogin();
                     <textarea name="" name="site_about_inp" id="site_about_inp" cols="0" rows="1" class="form-control shadow-none" required></textarea>
                   </div>
                   <div class="modal-footer">
-                    <button type="submit" onclick="site_title_inp.value = general_data.site_title_db, site_about_inp.value= general_data.site_about_db" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" onclick="site_title_inp.value = general_data.site_title_db, site_about_inp.value= general_data.site_about_db" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn custom-bg text-green shadow-none">Submit</button>
 
                   </div>
@@ -122,7 +122,6 @@ adminLogin();
                     </p>
                   </div>
 
-                  
                   <div class="mb-4">
                     <h6 class="card-subtitle mb-1 fw-bold">Email</h6>
                     <p class="card-text" id="email"></p>
@@ -158,7 +157,84 @@ adminLogin();
 
           </div>
         </div>
+        <!--Contract form modal  -->
 
+        <div class="modal fade" id="contracts_s" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content ">
+              <form class="contacts_s_form">
+                <div class="modal-header">
+                  <h5 class="modal-title d-flex align-items-center">Contacts  Setting</h5>
+                  <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                  <div class="container-fluid p-0">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="mb-4">
+                          <label class="form-label fw-bold">Address </label>
+                          <input type="text" name="address_inp" id="address_inp" class="form-control shadow-none" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                          <label class="form-label fw-bold">Google Map </label>
+                          <input type="text" name="gmap_inp" id="gmap_inp" class="form-control shadow-none" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                          <label class="form-label fw-bold">Phone </label>
+                          <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"> <i class="bi bi-telephone-fill fs-6 text-info"></i> </span>
+                            <input type="text" class="form-control shadow-none" id="pn1_inp" name="pn1_inp"  required>
+                          </div>
+                          <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"> <i class="bi bi-telephone-fill fs-6 text-info"></i> </span>
+                            <input type="text" class="form-control shadow-none" id="pn2_inp" name="pn2_inp" >
+                          </div>
+                        </div>
+
+                        <div class="mb-4">
+                          <label class="form-label fw-bold">Email </label>
+                          <input type="text" name="email_inp" id="email_inp" class="form-control shadow-none" required>
+                        </div>
+
+                      </div>
+                      <div class="col-md-6">
+                        <div class="mb-4">
+                          <label class="form-label fw-bold">Social link </label>
+                          <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"> <i class="bi bi-facebook"></i></span>
+                            <input type="text" class="form-control shadow-none" id="fb_inp" name="fb_inp"  required>
+                          </div>
+
+                          <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"> <i class="bi bi-instagram"></i> </span>
+                            <input type="text" class="form-control shadow-none" id="insta_inp" name="insta_inp"  required>
+                          </div>
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon1"> <i class="bi bi-twitter"></i> </span>
+                              <input type="text" class="form-control shadow-none" id="tw_inp" name="tw_inp" >
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                          <label class="form-label fw-bold">IFrame </label>
+                          <input type="text" name="iframe_inp" id="iframe_inp" class="form-control shadow-none" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="submit" onclick=contacts_inp(contacts_data) class="btn text-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn custom-bg text-green shadow-none">Submit</button>
+
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -168,12 +244,14 @@ adminLogin();
   <script>
       let general_data, contacts_data;
       let general_s_form = document.querySelector('.general_s_form'); 
+      let contacts_s_form = document.querySelector('.contacts_s_form'); 
       let site_title_inp = document.getElementById('site_title_inp');
       let site_about_inp = document.getElementById('site_about_inp');
       general_s_form.addEventListener('submit',function(e){
         e.preventDefault()
         upd_general(site_title_inp.value, site_about_inp.value)
       })
+
     function get_general() {
       let site_title = document.getElementById('site_title');
       let site_about = document.getElementById('site_about');
@@ -257,25 +335,68 @@ adminLogin();
       xhr.onload = function() {
         contacts_data = JSON.parse(this.responseText);
         contacts_data = Object.values(contacts_data)
-
-        for (let i = 0; i < contacts_data.length; i++) {
+        // console.log(contacts_data.length)
+        for (let i = 0; i < contacts_data.length-2; i++) {
           
           document.getElementById(contacts_p_id[i]).innerHTML = contacts_data[i+1];
           
+          contacts_inp(contacts_data)
         }
-        
-        iframe.src = contacts_data[9]
 
-        console.log(contacts_data)
-
+        iframe.src = contacts_data[9]; 
       }
       xhr.send('get_contacts')
+    }
+
+    function contacts_inp(data){
+        let contacts_inp_id = ['address_inp', 'gmap_inp', 'pn1_inp','pn2_inp','email_inp','fb_inp','insta_inp', 'tw_inp','iframe_inp']
+        for(let i=0;i<contacts_inp_id.length;i++){
+          // console.log(contacts_inp_id.values = data[i+1]);
+          document.getElementById(contacts_inp_id[i]).value = data[i+1]
+        }
+    }
+    contacts_s_form.addEventListener('submit',function(e){
+        e.preventDefault()
+        upd_contact()
+      })
+
+    
+    function upd_contact(){
+      let index = ['address','gmap', 'pn1','pn2','email','fb','insta', 'tw','iframe']
+      let contacts_inp_id = ['address_inp', 'gmap_inp', 'pn1_inp','pn2_inp','email_inp','fb_inp','insta_inp', 'tw_inp','iframe_inp']
+
+      let data_str=''
+      for (let i = 0; i <index.length; i++) {
+        data_str += index[i]+ '='+document.getElementById(contacts_inp_id[i]).value+'&'
+        // console.log(data_str)
+      }
+      data_str+='upd_contacts'
+      
+      let xhr = new XMLHttpRequest();
+
+      xhr.open('POST', "ajax/setting_crud.php", true)
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+      let myModal = document.getElementById('contracts_s')
+      let modal = bootstrap.Modal.getInstance(myModal)
+      modal.hide()
+      xhr.onload = function() {
+        // console.log(data_str)
+        //   if (this.responseText == 2 ) {
+        //   alert('success', ' Data insert successfully!')
+        //   get_contacts()
+        //  }// else {
+        //   alert('error', 'no change !')
+        // }  
+      }
+      xhr.send(data_str)
+      // console.log(data_str)
     }
 
     window.onload = function() {
       get_general()
       get_contacts()
     }
+
   </script>
 </body>
 

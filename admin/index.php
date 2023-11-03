@@ -29,7 +29,7 @@ if (isset($_SESSION['adminLogin'])&& $_SESSION['adminLogin']==true) {
   }
 </style>
 <body class="bg-light">
-  <div class="login_form text-center rounded bg-white">
+  <div class="login_form text-center rounded bg-white shadow-sm">
     <form action="" method="post">
       <h4 class="bg-dark text-white py-2">ADMIN LOG IN </h4>
       <div class="p-4">

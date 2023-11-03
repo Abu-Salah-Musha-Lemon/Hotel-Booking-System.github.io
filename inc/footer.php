@@ -32,7 +32,7 @@
 
 
 
-<h6 class="text-center bg-dark text-white p-4 m-0 fw-bold h-font">Desigh & develope By ASM Lemon</h2>
+<h6 class="text-center bg-dark text-white p-4 m-0 fw-bold h-font">Design & develope By ASM Lemon</h2>
 
 
 
