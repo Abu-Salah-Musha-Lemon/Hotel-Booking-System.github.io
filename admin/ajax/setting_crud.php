@@ -46,17 +46,37 @@ if (isset($_POST['get_contacts'])) {
     $data = mysqli_fetch_assoc($res);
     echo json_encode($data);
 }
+// var_dump($_POST);
+
 
 
 if (isset($_POST['upd_contacts'])) {
-  $frm_data = filteration($_POST);
-  echo $frm_data ;
-  $query = "UPDATE `contact_details` SET`address_db`=?,`gmap_db`=?,`pn1_db`=?,`pn2_db`=?,`email_db`=?,`fb_db`=?,`insta_db`=?,`tw_db`=?,`iframe_db`=? WHERE `sr_no`=?";
-  $values = [$frm_data['address_inp'],$frm_data['gmap_inp'],$frm_data['pn1_inp'],$frm_data['pn2_inp'],$frm_data['email_inp'],$frm_data['fb_inp'],$frm_data['insta_inp'],$frm_data['tw_inp'],$frm_data['iframe_inp'],1]; 
-  $res = update($query,$values,'ssssssssi');
-   echo $res;
- }
 
+  $frm_data = filteration($_POST);
+  $query = "UPDATE `contact_details` SET `address_db`=?, `gmap_db`=?, `pn1_db`=?, `pn2_db`=?, `email_db`=?, `fb_db`=?, `insta_db`=?, `tw_db`=?, `iframe_db`=? WHERE `sr_no`=?";
+  $values = [$frm_data['address'], $frm_data['gmap'], $frm_data['pn1'], $frm_data['pn2'], $frm_data['email'], $frm_data['fb'], $frm_data['insta'], $frm_data['tw'], $frm_data['iframe'], 2]; // 2 is sr_no of the data base and sr_no in the data base is 2nd row.
+
+  $res = update($query, $values, 'sssssssssi');
+  print_r($res);
+  // if ($res === false) {
+  //   die("Database error: " . mysqli_error($your_db_connection));
+  // } else {
+  //   echo "Data updated successfully.";
+  // }
+}
+
+if (isset[$_POST['add_member']]) {
+  $frm_data = filteration($_POST);
+   $img_re = uploadImage($_FILES['picture'],ABOUT_US);
+
+   if ($img_re == 'inv_img') {
+    echo $img_re;
+   }elseif($img_re =='inv_size' ){
+    echo $img_re;
+   }elseif($ima_re == 'upd_failed'){
+    echo $ima_re;
+   }
+}
 
 
 

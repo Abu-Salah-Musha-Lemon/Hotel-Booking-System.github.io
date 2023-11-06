@@ -41,7 +41,7 @@ adminLogin();
           </div>
         </div>
         
-        <!-- form modal  -->
+        <!--General form modal  -->
 
         <div class="modal fade" id="general_s" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -70,6 +70,7 @@ adminLogin();
             </div>
           </div>
         </div>
+
         <!-- shutdown section -->
 
         <div class="card rounded shadow-sm mb-4">
@@ -235,10 +236,57 @@ adminLogin();
             </div>
           </div>
         </div>
+
+        <!-- MANAGEMENT TEAMS Setting section -->
+
+        <div class="card rounded shadow-sm mb-4">
+        <div class="card-body">
+          <div class="d-flex align-item-center justify-content-between">
+            <h5 class="card-title m-0">Management Team</h5>
+            <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-3" data-bs-toggle="modal" data-bs-target="#teams_s">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+          </div>
+          <h6 class="card-subtitle mb-1 fw-bold">Picture </h6>
+        </div>
+      </div>
+
+        <!--General form modal  -->
+
+        <div class="modal fade" id="teams_s" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form class="teams_s_form">
+                <div class="modal-header">
+                  <h5 class="modal-title d-flex align-items-center"> Add Team Member </h5>
+                  <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="mb-4">
+                    <label class="form-label fw-bold">Name</label>
+                    <input type="text" name="member_name" id="member_name_inp" class="form-control shadow-none" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label fw-bold">Picture</label>
+                    <!-- accept is a image  validation  attribute in Html -->
+                    <input type="file" name="member_picture" id="member_picture_inp" accept=".jpg, .png, .jpeg" class="form-control shadow-none" required>
+                   
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" onclick="site_title_inp.value = general_data.site_title_db, site_about_inp.value= general_data.site_about_db" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn custom-bg text-green shadow-none">Submit</button>
+
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <?php echo $_SERVER['DOCUMENT_ROOT'];?>
+
       </div>
     </div>
   </div>
-
   <?php require_once './inc/script.php' ?>
 
   <script>
@@ -247,6 +295,11 @@ adminLogin();
       let contacts_s_form = document.querySelector('.contacts_s_form'); 
       let site_title_inp = document.getElementById('site_title_inp');
       let site_about_inp = document.getElementById('site_about_inp');
+
+      let teams_s_from = document.querySelector(".teams_s_form");
+      let member_name_inp= document.getElementById("member_name_inp")
+      let member_picture_inp= document.getElementById("member_picture_inp")
+      
       general_s_form.addEventListener('submit',function(e){
         e.preventDefault()
         upd_general(site_title_inp.value, site_about_inp.value)
@@ -288,6 +341,7 @@ adminLogin();
       let myModal = document.getElementById('general_s')
       let modal = bootstrap.Modal.getInstance(myModal)
       modal.hide()
+      console.log(this.responseText);
       if (this.responseText == 1) {
         alert('success', 'changes save!')
         get_general()
@@ -357,39 +411,72 @@ adminLogin();
     }
     contacts_s_form.addEventListener('submit',function(e){
         e.preventDefault()
-        upd_contact()
+        upd_contacts()
       })
 
-    
-    function upd_contact(){
+
+    function upd_contacts(){
       let index = ['address','gmap', 'pn1','pn2','email','fb','insta', 'tw','iframe']
       let contacts_inp_id = ['address_inp', 'gmap_inp', 'pn1_inp','pn2_inp','email_inp','fb_inp','insta_inp', 'tw_inp','iframe_inp']
+      let data_str = ''
+      for(let i =0; i<index.length;i++){
+        data_str+=  index[i] +'='+document.getElementById(contacts_inp_id[i]).value +'&'
+      } 
+      data_str+='upd_contacts';
+      // console.log(data_str)
 
-      let data_str=''
-      for (let i = 0; i <index.length; i++) {
-        data_str += index[i]+ '='+document.getElementById(contacts_inp_id[i]).value+'&'
-        // console.log(data_str)
-      }
-      data_str+='upd_contacts'
-      
       let xhr = new XMLHttpRequest();
-
       xhr.open('POST', "ajax/setting_crud.php", true)
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-      let myModal = document.getElementById('contracts_s')
-      let modal = bootstrap.Modal.getInstance(myModal)
-      modal.hide()
-      xhr.onload = function() {
-        // console.log(data_str)
-        //   if (this.responseText == 2 ) {
-        //   alert('success', ' Data insert successfully!')
-        //   get_contacts()
-        //  }// else {
-        //   alert('error', 'no change !')
-        // }  
+
+      xhr.onload = function() { 
+            // module hidden  
+            let myModal = document.getElementById('contracts_s')
+            let modal = bootstrap.Modal.getInstance(myModal)
+            modal.hide()
+              // console.log(this.responseText);
+                if (this.responseText == 1 ) {
+                alert('success', ' Data insert successfully!')
+                get_contacts()
+              }
+              else {
+                
+                alert('error', 'no change !')
+              }  
       }
       xhr.send(data_str)
-      // console.log(data_str)
+    }
+
+    teams_s_from.addEventListener('submit',function(e){
+      e.preventDefault()
+      add_member();
+    })
+
+    function add_member(){
+      let data = new FormData()
+      data.append('name',member_name_inp.value)
+      data.append('picture', member_picture_inp.files[0]);
+      data.append('add_member', '')
+      
+      let xhr = new XMLHttpRequest();
+      xhr.open('POST', "ajax/setting_crud.php", true)
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+
+      xhr.onload = function() {}
+      xhr.sent(data)
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     window.onload = function() {
