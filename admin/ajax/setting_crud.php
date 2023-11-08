@@ -29,16 +29,6 @@ if (isset($_POST['upd_shutdown'])) {
 }
 
 
-
-// if (isset($_POST['get_contacts'])) {
-//   $query = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
-//   $value =[2];
-//   $res = select($query,$value, 'i');
-//   $data = mysqli_fetch_assoc($res);
-//   $json_data= json_encode($data);
-//   echo $json_data;
-// }
-
 if (isset($_POST['get_contacts'])) {
     $query = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
     $value = [2];
@@ -65,16 +55,27 @@ if (isset($_POST['upd_contacts'])) {
   // }
 }
 
-if (isset[$_POST['add_member']]) {
+if (isset($_POST['add_member'])) {
   $frm_data = filteration($_POST);
-   $img_re = uploadImage($_FILES['picture'],ABOUT_US);
+   $img_re = uploadImage($_FILES['image'],ABOUT_US);
 
    if ($img_re == 'inv_img') {
-    echo $img_re;
-   }elseif($img_re =='inv_size' ){
-    echo $img_re;
-   }elseif($ima_re == 'upd_failed'){
-    echo $ima_re;
+    return $img_re;
+   }
+   else if($img_re =='inv_size'){
+    return   $img_re;
+   }
+   else if($ima_re == 'upd_failed'){
+    return $ima_re;
+   }
+   else{
+    $q = "INSERT INTO `team_details`( `tm_name_db`, `tm_picture_db`) VALUES (?,?)";
+    $value = [$frm_data['name'],$img_re];
+    print_r($value);
+    $res = insert($q,$value,'ss') or die($res);
+    echo $res;
+    var_dump($res);
+
    }
 }
 

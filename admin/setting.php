@@ -251,7 +251,7 @@ adminLogin();
         </div>
       </div>
 
-        <!--General form modal  -->
+        <!--members form modal  -->
 
         <div class="modal fade" id="teams_s" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -282,7 +282,7 @@ adminLogin();
             </div>
           </div>
         </div>
-        <?php echo $_SERVER['DOCUMENT_ROOT'];?>
+        <?php //echo $_SERVER['DOCUMENT_ROOT'];?>
 
       </div>
     </div>
@@ -447,41 +447,82 @@ adminLogin();
       xhr.send(data_str)
     }
 
+    // members 
     teams_s_from.addEventListener('submit',function(e){
       e.preventDefault()
-      add_member();
+      add_member()
     })
+
+    // function add_member() {
+
+    //   let data = new FormData();
+    //   data.append('name', member_name_inp.value);
+    //   data.append('picture', member_picture_inp.files[0]);
+    //   data.append('add_member', ' ');
+
+    //   let xhr = new XMLHttpRequest();
+    //   xhr.open('POST', "ajax/setting_crud.php", true);
+    //   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    //   xhr.onload = function() {
+    //     // try {
+    //           // const response = JSON.parse(this.responseText);
+    //           let myModal = document.getElementById('teams_s');
+    //           let modal = bootstrap.Modal.getInstance(myModal);
+    //           modal.hide();
+    //           console.log(this.responseText);
+    //           if (this.responseText == 'inv_size') {
+    //             alert('error', 'The image is larger than 2MB!');
+    //           } else if (this.responseText == 'inv_img') {
+    //             alert('error', 'The image format is invalid!');
+    //           } else if (this.responseText == 'upd_failed') {
+    //             alert('error', 'Failed to upload');
+    //           } else {
+    //             alert('success', 'Upload successful!');
+    //           }
+    //           console.log(data);
+    //             xhr.send(data);
+    //     //     }
+           
+    //     //  catch (error) {
+    //     //   console.error("Error parsing JSON:", error);
+    //     //   // Handle the error or response gracefully
+    //     // }
+    //   }
+    // }
 
     function add_member(){
       let data = new FormData()
       data.append('name',member_name_inp.value)
       data.append('picture', member_picture_inp.files[0]);
-      data.append('add_member', '')
+      data.append('add_member', ' ')
       
       let xhr = new XMLHttpRequest();
       xhr.open('POST', "ajax/setting_crud.php", true)
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
 
-      xhr.onload = function() {}
-      xhr.sent(data)
-
-
-
-
-
-
-
-
-
-
-
-
+      xhr.onload = function() { 
+            // module hidden  
+            let myModal = document.getElementById('teams_s')
+            let modal = bootstrap.Modal.getInstance(myModal)
+            modal.hide()
+              // console.log(this.responseText);
+                if (this.responseText == 'inv_size' ) {
+                alert('error', 'The image is larger the 2MB!')
+              }else if(this.responseText == 'inv_img'){
+                alert('error', 'The image is formate invalid !')
+              }else if(this.responseText == 'upd_failed'){
+                alert('error','failed to upload')}
+              else{alert('success', 'upload successfully !') }
+      }
+      // console.log(data);
+      xhr.send(data)
+      console.log(data);
 
     }
-
     window.onload = function() {
       get_general()
       get_contacts()
+      // add_member()
     }
 
   </script>
