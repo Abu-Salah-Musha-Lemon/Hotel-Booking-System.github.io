@@ -10,10 +10,11 @@ if (!$con) {
 }
 function filteration($data){
   foreach($data as $key=>$value){
-   $dat[$key] = trim($value);
-   $dat[$key] = stripslashes($value);
-   $dat[$key] = htmlspecialchars($value);
-   $dat[$key] = strip_tags($value);
+   $value = trim($value);
+   $value = stripslashes($value);
+   $value = strip_tags($value);
+   $value = htmlspecialchars($value);
+   $data[$key] = $value;
 
   }
   return $data;

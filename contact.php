@@ -28,6 +28,12 @@
 		 </p>
 	</div>
 
+	<?php 
+	$contact_q = "SELECT * FROM `contact_details` WHERE `sr_no` = ?";
+	$value = [2];
+	$contact_r =mysqli_fetch_assoc( select($contact_q, $value,'i'));
+	// print_r($contact_r);
+?>
 <div class="container">
 	<div class="row">
 		<div class="col-lg-6 col-md-6 mb-5 px-4">
@@ -35,31 +41,50 @@
 			<iframe class="w-100 rounded mb-4" height="450" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d233667.49996414292!2d90.2545337824612!3d23.78106687068126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2z4Kai4Ka-4KaV4Ka-!5e0!3m2!1sbn!2sbd!4v1694111059484!5m2!1sbn!2sbd" loading="lazy"></iframe>
 
 				<h4>ADDRESS</h4>
-				<a href="https://goo.gl/maps/HFvB8rHkUVgYECKZ7" target="_blank" class="d-inline-block text-decoration-none text-dark">
-				<i class="bi bi-geo-alt-fill"></i> XYZ, JatraBark, Dhaka 1204
+				<a href="<?php echo $contact_r['gmap_db'] ?>" target="_blank" class="d-inline-block text-decoration-none text-dark">
+				<i class="bi bi-geo-alt-fill"></i> <?php echo $contact_r['address_db'] ?>
 				</a>
 
 				<h6 class="mt-4"> Cell us</h6>
-					<a href="tel:+8812345555" class="d-inline-block text-decoration-none text-dark 
-				"><i class="bi bi-telephone-fill fs-6 text-info"></i>+8812345555</a><br>
-					<a href="tel:+8812345555" class="d-inline-block text-decoration-none text-dark 
-				"><i class="bi bi-telephone-fill fs-6 text-info"></i>+8812345555</a>
+					<a href="tel:+<?php echo $contact_r['pn1_db'] ?>" class="d-inline-block text-decoration-none text-dark 
+				"><i class="bi bi-telephone-fill fs-6 text-info"></i>+<?php echo $contact_r['pn1_db'] ?></a><br>
+
+				<?php 
+		 
+				if ($contact_r['pn2_db']!='') {
+					echo <<< data
+								<a href="tel:+$contact_r[pn2_db]" class="d-inline-block text-decoration-none text-dark 
+							"><i class="bi bi-telephone-fill fs-6 text-info"></i>+ $contact_r[pn2_db]</a>
+						data;
+				}
+			
+	
+				?>
+
 
 				<h6 class="mt-4"> Email</h6>
-					<a href="ask.asmLhotel@gmail.com" class="d-inline-block text-decoration-none text-dark">
-						<i class="bi bi-envelope-fill mx-1"></i>ask.asmlhote@gmail.com
+					<a href="<?php echo $contact_r['email_db'] ?>" class="d-inline-block text-decoration-none text-dark">
+						<i class="bi bi-envelope-fill mx-1"></i><?php echo $contact_r['email_db'] ?>
 					</a>
 
 					<h6 class="mt-4"> Follow us</h6>
-					<a href="#" class="d-inline-block text-dark fs-5 me-2">
-					<i class="bi bi-twitter px-2 me-1"></i>
+					<a href="<?php echo $contact_r['fb_db'] ?>"class="d-inline-block text-dark fs-5 me-2" target="_blank" rel="noopener noreferrer">
+					<i class="bi bi-instagram px-2 me-1"></i>
 					</a>
-					<a href="#" class="d-inline-block text-dark fs-5 me-2">
+					<a href="<?php echo $contact_r['insta_db'] ?>"class="d-inline-block text-dark fs-5 me-2" target="_blank" rel="noopener noreferrer">
 						<i class="bi bi-facebook px-2 me-1"></i>
 					</a>
-					<a href="#" class="d-inline-block text-dark fs-5 mb-3">
-						<i class="bi bi-twitter px-2 me-1"></i>
-					</a>
+					<?php 
+						if ($contact_r['tw_db']!='') {
+							echo <<< data
+											<a href="$contact_r[tw_db]"class="d-inline-block text-dark fs-5 me-2" target="_blank" rel="noopener noreferrer">
+												<i class="bi bi-twitter px-2 me-1"></i>
+											</a>
+							data;
+						}
+					
+					?>
+
 
 			</div>
 		</div>

@@ -1,3 +1,11 @@
+<?php 
+require_once ('./admin/inc/config.php');
+require_once ('./admin/inc/essential.php');
+
+// C:\xampp\htdocs\Hotel-Booking\Hotel-Booking-System.io\admin/inc/essential.php
+
+?>
+
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light bg-white px-lg-2 py-lg-2 shadow-sm sticky-top">
 		<div class="container-fluid">

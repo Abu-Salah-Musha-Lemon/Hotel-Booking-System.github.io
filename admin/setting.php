@@ -187,11 +187,11 @@ adminLogin();
                           <label class="form-label fw-bold">Phone </label>
                           <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1"> <i class="bi bi-telephone-fill fs-6 text-info"></i> </span>
-                            <input type="text" class="form-control shadow-none" id="pn1_inp" name="pn1_inp"  required>
+                            <input type="number" class="form-control shadow-none" id="pn1_inp" name="pn1_inp"  required>
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1"> <i class="bi bi-telephone-fill fs-6 text-info"></i> </span>
-                            <input type="text" class="form-control shadow-none" id="pn2_inp" name="pn2_inp" >
+                            <input type="number" class="form-control shadow-none" id="pn2_inp" name="pn2_inp" >
                           </div>
                         </div>
 
