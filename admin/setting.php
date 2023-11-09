@@ -494,7 +494,7 @@ adminLogin();
       let data = new FormData()
       data.append('name',member_name_inp.value)
       data.append('picture', member_picture_inp.files[0]);
-      data.append('add_member', ' ')
+      data.append('add_member', '')
       
       let xhr = new XMLHttpRequest();
       xhr.open('POST', "ajax/setting_crud.php", true)
