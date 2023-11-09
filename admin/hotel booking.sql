@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2023 at 03:51 AM
+-- Generation Time: Nov 09, 2023 at 06:25 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,56 +24,31 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Table structure for table `team_details`
 --
 
-CREATE TABLE `admin` (
-  `sr_no` int(255) NOT NULL,
-  `admin_name` varchar(255) NOT NULL,
-  `admin_pass` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`sr_no`, `admin_name`, `admin_pass`) VALUES
-(1, 'lemon', '123');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `setting`
---
-
-CREATE TABLE `setting` (
+CREATE TABLE `team_details` (
   `sr_no` int(11) NOT NULL,
-  `site_title` varchar(255) NOT NULL,
-  `site_about` varchar(3000) NOT NULL,
-  `shutdown` tinyint(1) NOT NULL
+  `tm_name_db` varchar(255) NOT NULL,
+  `tm_picture_db` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `setting`
+-- Dumping data for table `team_details`
 --
 
-INSERT INTO `setting` (`sr_no`, `site_title`, `site_about`, `shutdown`) VALUES
-(1, 'ASML', 'ASML hotel ---ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur nostrum quia id saepe quibusdam maxime rerum sit doloribus, fugit ad sed iusto inventore ratione molestiae laboriosam, placeat, assumenda ut dolorem sapiente. Debitis maxime voluptatem inventore est quas cum animi laborum, velit beatae accusantium reiciendis eligendi cumque, itaque, sint asperiores sed tempore possimus? Soluta ratione pariatur sapiente rerum officiis perferendis distinctio dolor porro doloribus aliquid nostrum minima corrupti quas quis adipisci voluptatibus atque quod perspiciatis veritatis, facere mollitia! Pariatur quibusdam quo quae, unde perferendis reiciendis laborum voluptatum vitae vero tempora illo consequatur deleniti expedita fuga voluptate dolorem? Quisquam recusandae natus eos?', 0);
+INSERT INTO `team_details` (`sr_no`, `tm_name_db`, `tm_picture_db`) VALUES
+(1, 'lemon', ''),
+(2, 'lemon', '');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin`
+-- Indexes for table `team_details`
 --
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`sr_no`);
-
---
--- Indexes for table `setting`
---
-ALTER TABLE `setting`
+ALTER TABLE `team_details`
   ADD PRIMARY KEY (`sr_no`);
 
 --
@@ -81,16 +56,10 @@ ALTER TABLE `setting`
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT for table `team_details`
 --
-ALTER TABLE `admin`
-  MODIFY `sr_no` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `setting`
---
-ALTER TABLE `setting`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `team_details`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

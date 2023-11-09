@@ -514,9 +514,7 @@ adminLogin();
                 alert('error','failed to upload')}
               else{alert('success', 'upload successfully !') }
       }
-      // console.log(data);
       xhr.send(data)
-      console.log(data);
 
     }
     window.onload = function() {

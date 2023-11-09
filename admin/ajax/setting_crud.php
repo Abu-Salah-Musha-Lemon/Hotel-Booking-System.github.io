@@ -62,7 +62,7 @@ if (isset($_POST['add_member'])) {
    if ($img_re == 'inv_img') {
     return $img_re;
    }
-   else if($img_re =='inv_size'){
+   else if($img_re == 'inv_size'){
     return   $img_re;
    }
    else if($ima_re == 'upd_failed'){
