@@ -378,9 +378,10 @@
 	<!-- Reach us  -->
 	<h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">REACH US</h2>
 <?php 
-	$contact_q = "SELECT * FROM `contact_details` WHERE `sr_no` = ?";
-	$value = [2];
-	$contact_r =mysqli_fetch_assoc( select($contact_q, $value,'i'));
+	// $contact_q = "SELECT * FROM `contact_details` WHERE `sr_no` = ?";
+	// $value = [2];
+	// $contact_r =mysqli_fetch_assoc( select($contact_q, $value,'i'));
+	// coming from nav
 
 
 ?>

@@ -8,24 +8,31 @@
 		</div>
 		<div class="col-lg-4 p-4">
 			<h5  class="mb-4">links</h5>
-			<a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">Home</a><br>
-			<a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">Rooms</a><br>
-			<a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">Facilities</a><br>
-			<a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">Contact us</a><br>
-			<a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">Abour us</a><br>
+			<a href="index.php" class="d-inline-block mb-2 text-decoration-none text-dark">Home</a><br>
+			<a href="rooms.php" class="d-inline-block mb-2 text-decoration-none text-dark">Rooms</a><br>
+			<a href="facilities.php" class="d-inline-block mb-2 text-decoration-none text-dark">Facilities</a><br>
+			<a href="contact.php" class="d-inline-block mb-2 text-decoration-none text-dark">Contact us</a><br>
+			<a href="about.php" class="d-inline-block mb-2 text-decoration-none text-dark">About us</a><br>
 		</div>
 
 		<div class="col-lg-4 p-4">
 			<h5 class="mb-4">Follow us</h5>
-			<a href="#" class="d-inline-block mb-2 text-decoration-none text-dark " >
-				<span class="badge bg-light text-dark fs-6 p-2"><i class="bi bi-twitter px-2"></i>Twitter</span>
+			<a href="<?php echo $contact_r['insta_db']?>" class="d-inline-block mb-2 text-decoration-none text-dark " target="_blank" rel="noopener noreferrer" >
+				<span class="badge bg-light text-dark fs-6 p-2"><i class="bi bi-instagram px-2"></i>Instagram</span>
 			</a><br>
-			<a href="#" class="d-inline-block mb-2 text-decoration-none text-dark " >
+			<a href="<?php echo $contact_r['fb_db']?>" class="d-inline-block mb-2 text-decoration-none text-dark " target="_blank" rel="noopener noreferrer" >
 				<span class="badge bg-light text-dark fs-6 p-2"><i class="bi bi-facebook px-2"></i>Facebook</span>
 			</a><br>
-			<a href="#" class="d-inline-block mb-2 text-decoration-none text-dark " >
-				<span class="badge bg-light text-dark fs-6 p-2"><i class="bi bi-twitter px-2"></i>Twitter</span>
-			</a><br>
+
+			<?php if($contact_r['insta_db']!=''){
+
+				echo <<< data
+							<a href="$contact_r[tw_db]" class="d-inline-block mb-2 text-decoration-none text-dark " target="_blank" rel="noopener noreferrer">
+								<span class="badge bg-light text-dark fs-6 p-2"><i class="bi bi-twitter px-2"></i>Twitter</span>
+							</a><br>
+				data;
+			}?>
+
 		</div>
 	</div>
 </div>

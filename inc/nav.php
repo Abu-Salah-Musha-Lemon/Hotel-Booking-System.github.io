@@ -2,6 +2,11 @@
 require_once ('./admin/inc/config.php');
 require_once ('./admin/inc/essential.php');
 
+// this section use all the page load contact details.
+$contact_q = "SELECT * FROM `contact_details` WHERE `sr_no` = ?";
+$value = [2];
+$contact_r =mysqli_fetch_assoc( select($contact_q, $value,'i'));
+
 // C:\xampp\htdocs\Hotel-Booking\Hotel-Booking-System.io\admin/inc/essential.php
 
 ?>

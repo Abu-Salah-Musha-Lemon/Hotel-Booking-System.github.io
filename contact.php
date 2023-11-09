@@ -27,13 +27,6 @@
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque explicabo eius officiis <br> saepe ipsum optio, nostrum impedit aspernatur! Sed, quam!
 		 </p>
 	</div>
-
-	<?php 
-	$contact_q = "SELECT * FROM `contact_details` WHERE `sr_no` = ?";
-	$value = [2];
-	$contact_r =mysqli_fetch_assoc( select($contact_q, $value,'i'));
-	// print_r($contact_r);
-?>
 <div class="container">
 	<div class="row">
 		<div class="col-lg-6 col-md-6 mb-5 px-4">
