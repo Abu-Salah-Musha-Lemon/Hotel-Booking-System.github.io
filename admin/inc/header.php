@@ -12,8 +12,8 @@
       <div class="collapse navbar-collapse flex-column align-items-stretch mt-2" id="adminDropDown">
         <ul class="nav nav-pills flex-column">
           <li class="nav-item"><a class="nav-link text-white" href="dashboard.php">Dashboard</a></li> 
-          <li class="nav-item"><a class="nav-link text-white" href="dashboard.php">Room</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="dashboard.php">User</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="rooms.php">Room</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="user_query.php">User Query</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="setting.php">Setting</a></li>
         </ul>
       </div>

@@ -34,3 +34,11 @@ input[type=number] {
     margin: 0 auto;
     height: 1.7px;
 }
+.custom-alert {
+    position: fixed;
+    float: right;
+    top: 90px;
+    width: 16%;
+    right: 25px;
+    z-index: 10;
+}

@@ -12,7 +12,7 @@ $contact_r =mysqli_fetch_assoc( select($contact_q, $value,'i'));
 ?>
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light bg-white px-lg-2 py-lg-2 shadow-sm sticky-top">
+<nav id="nav-bar" class="navbar navbar-expand-lg navbar-light bg-light bg-white px-lg-2 py-lg-2 shadow-sm sticky-top">
 		<div class="container-fluid">
 			<a class="navbar-brand me-5 fw-bold fs-3 h-font" href="#">ASML Hotel</a>
 			<button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse"
@@ -23,7 +23,7 @@ $contact_r =mysqli_fetch_assoc( select($contact_q, $value,'i'));
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a class="nav-link active me-2" aria-current="page" href="index.php">Home</a>
+						<a class="nav-link  me-2"  href="index.php">Home</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link me-2" href="rooms.php">Rooms</a>

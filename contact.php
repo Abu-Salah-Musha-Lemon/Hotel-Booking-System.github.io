@@ -81,33 +81,48 @@
 
 			</div>
 		</div>
+
+
 		<div class="col-lg-6 col-md-6 mb-5 px-4">
 			<div class="bg-white rounded shadow-sm p-4 ">
-				<form action="#">
+				<form action="#" method= "POST">
 					<h5>Send a massage</h5>
 					<div class="mt-3">
 						<lable class="form-lable" style="font-weight: 500;">Name</lable>
-						<input type="text" name="" class="form-control shadow-none" id="">
+						<input type="text" name="name" required class="form-control shadow-none" id="">
 					</div>
 					<div class="mt-3">
 						<lable class="form-lable" style="font-weight: 500;">Email</lable>
-						<input type="email" name="" class="form-control shadow-none" id="">
+						<input type="email" name="email" required class="form-control shadow-none" id="">
 					</div>
 					<div class="mt-3">
 						<lable class="form-lable" style="font-weight: 500;">Subject</lable>
-						<input type="email" name="" class="form-control shadow-none" id="">
+						<input type="text" name="subject" class="form-control shadow-none" id="">
 					</div>
 					<div class="mt-3">
 						<lable class="form-lable" style="font-weight: 500;">Massage</lable>
-						<textarea name="" id="" cols="30" rows="6" style="resize: none;" class="form-control shadow-none"></textarea>
+						<textarea name="message" required id="" cols="30" rows="6" style="resize: none;" class="form-control shadow-none"></textarea>
 					</div>
-					<button type="submit" class="btn -text-white custom-bg mt-3 shadow-none"> Send</button>
+					<button type="submit" name="send" class="btn -text-white custom-bg mt-3 shadow-none"> Send</button>
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
-
+<?php
+if (isset($_POST['send'])) {
+	$frm_data = filteration($_POST);
+	$q = "INSERT INTO `user_query`( `db_name`, `db_email`, `db_subject`, `db_message`) VALUES (?,?,?,?)";
+	$value = [$frm_data['name'],$frm_data['email'],$frm_data['subject'],$frm_data['message']];
+	$res = insert($q,$value,'ssss');
+	if ($res == 1) {
+		alert('success','send message');
+	}else{
+		alert('error','Massage send failed');
+	}
+	
+}
+?>
     <?php include_once "./inc/footer.php";?>
 </body>
 </html>

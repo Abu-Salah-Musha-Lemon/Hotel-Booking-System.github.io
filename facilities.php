@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php header("Refresh:2");?>
+<?php //header("Refresh:2");?>
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
