@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2023 at 08:26 AM
+-- Generation Time: Nov 13, 2023 at 01:36 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -50,8 +50,8 @@ CREATE TABLE `contact_details` (
   `sr_no` int(11) NOT NULL,
   `address_db` varchar(255) NOT NULL,
   `gmap_db` varchar(255) NOT NULL,
-  `pn1_db` varchar(30) NOT NULL,
-  `pn2_db` varchar(30) NOT NULL,
+  `pn1_db` bigint(20) NOT NULL,
+  `pn2_db` bigint(20) NOT NULL,
   `email_db` varchar(255) NOT NULL,
   `fb_db` varchar(255) NOT NULL,
   `insta_db` varchar(255) NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE `contact_details` (
 --
 
 INSERT INTO `contact_details` (`sr_no`, `address_db`, `gmap_db`, `pn1_db`, `pn2_db`, `email_db`, `fb_db`, `insta_db`, `tw_db`, `iframe_db`) VALUES
-(2, 'XYZ, JatraBark, Dhaka 1204', 'https://goo.gl/maps/HFvB8rHkUVgYECKZ7', ' 8812345555', ' 8812345555', 'ask.asmlhote@gmail.com', 'fb.com', 'insta.com', 'tw.com', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d233668.06396869835!2d90.25487678497385!3d23.780753030831328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81:0x8fa563bbdd5904c2!2sDhaka!5e0!3m2!1sen!2sbd!4v1699027044198!5m2!1sen!2sbd\" ');
+(2, 'XYZ, JatraBark, Dhaka 1204', 'https://goo.gl/maps/HFvB8rHkUVgYECKZ7', 990045555, 8812345555, 'asmlhote@gmail.com', 'https://www.facebook.com/', 'https://www.facebook.com/', 'https://www.facebook.com/', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d233668.06396869835!2d90.25487678497385!3d23.780753030831328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81:0x8fa563bbdd5904c2!2sDhaka!5e0!3m2!1sen!2sbd!4v1699027044198!5m2!1sen!2sbd');
 
 -- --------------------------------------------------------
 
@@ -106,6 +106,32 @@ INSERT INTO `team_details` (`sr_no`, `tm_name_db`, `tm_picture_db`) VALUES
 (1, 'lemon', ''),
 (2, 'lemon', '');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_query`
+--
+
+CREATE TABLE `user_query` (
+  `sr_no` int(11) NOT NULL,
+  `db_name` varchar(50) NOT NULL,
+  `db_email` varchar(150) NOT NULL,
+  `db_subject` varchar(200) NOT NULL,
+  `db_message` varchar(1500) NOT NULL,
+  `db_date` date NOT NULL DEFAULT current_timestamp(),
+  `db_seen` tinyint(4) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_query`
+--
+
+INSERT INTO `user_query` (`sr_no`, `db_name`, `db_email`, `db_subject`, `db_message`, `db_date`, `db_seen`) VALUES
+(1, 'lemon lemon', 'lemon@gmail.com', 'room', 'asdf', '2023-11-10', 0),
+(2, 'lemon lemon', 'lemon@gmail.com', 'room', 'asdf', '2023-11-10', 0),
+(3, 'leon', 'lemon@gmail.com', 'room', 'asdf', '2023-11-10', 0),
+(4, 'lemon', 'lemon@gmail.com', 'room', 'wer', '2023-11-10', 1);
+
 --
 -- Indexes for dumped tables
 --
@@ -135,6 +161,12 @@ ALTER TABLE `team_details`
   ADD PRIMARY KEY (`sr_no`);
 
 --
+-- Indexes for table `user_query`
+--
+ALTER TABLE `user_query`
+  ADD PRIMARY KEY (`sr_no`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -161,6 +193,12 @@ ALTER TABLE `setting`
 --
 ALTER TABLE `team_details`
   MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `user_query`
+--
+ALTER TABLE `user_query`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
