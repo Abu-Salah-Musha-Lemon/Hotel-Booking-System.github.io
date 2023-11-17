@@ -55,28 +55,30 @@ if (isset($_POST['upd_contacts'])) {
   // }
 }
 
+//  finale compleat 
 if (isset($_POST['add_member'])) {
-  $frm_data = filteration($_POST);
-   $img_re = uploadImage($_FILES['image'],ABOUT_US);
+  $frm_data = filteration($_POST); // Assuming filtration function is defined
 
-   if ($img_re == 'inv_img') {
-    return $img_re;
-   }
-   else if($img_re == 'inv_size'){
-    return   $img_re;
-   }
-   else if($ima_re == 'upd_failed'){
-    return $ima_re;
-   }
-   else{
-    $q = "INSERT INTO `team_details`( `tm_name_db`, `tm_picture_db`) VALUES (?,?)";
-    $value = [$frm_data['name'],$img_re];
-    print_r($value);
-    $res = insert($q,$value,'ss') or die($res);
-    echo $res;
-    var_dump($res);
+  $img_re = uploadImage($_FILES['picture'], ABOUT_US);
 
-   }
+  if ($img_re == 'inv_img') {
+     echo $img_re;
+  } else if ($img_re == 'inv_size') {
+     echo $img_re;
+  } else if ($img_re == 'upd_failed') {
+     echo $img_re;
+  } else {
+     $q = "INSERT INTO `team_details`( `tm_name_db`, `tm_picture_db`) VALUES (?,?)";
+     $value = [$frm_data['name'], $img_re];
+     $res = insert($q, $value, 'ss');
+
+     // Assuming insert function handles the database interaction
+     if ($res) {
+        echo json_encode(['status' => 'success', 'message' => 'Upload successful']);
+     } else {
+        echo json_encode(['status' => 'error', 'message' => 'Failed to upload']);
+     }
+  }
 }
 
 

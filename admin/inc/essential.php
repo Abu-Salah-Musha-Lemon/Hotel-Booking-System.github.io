@@ -1,7 +1,6 @@
 <?php
 
-define('UPLOAD_IMAGE_PATH', $_SERVER['DOCUMENT_ROOT'].'/Hotel-Booking/image/');
-define('ABOUT_US','admin/');
+
 
 function adminLogin(){
   session_start();
@@ -26,11 +25,14 @@ function alert($type, $msg){
     alert;
 } 
 
+define('UPLOAD_IMAGE_PATH', $_SERVER['DOCUMENT_ROOT'].'/Hotel-Booking/Hotel-Booking-System.io/image/');
+define('ABOUT_US','admin/');
+
 function uploadImage($image, $folder){
   $valid_mime = ['image/jpg','image/jpeg','image/png',];
   $image_mime =['type'];
   
-  if(!in_array($image_mine,$valid_mime)){
+  if(in_array($image_mime,$valid_mime)){
     return 'inv_img'; // invalid image extension or formate
   }
   else if (($image['size']/(1024*1024))>2) {

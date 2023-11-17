@@ -240,16 +240,16 @@ adminLogin();
         <!-- MANAGEMENT TEAMS Setting section -->
 
         <div class="card rounded shadow-sm mb-4">
-        <div class="card-body">
-          <div class="d-flex align-item-center justify-content-between">
-            <h5 class="card-title m-0">Management Team</h5>
-            <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-3" data-bs-toggle="modal" data-bs-target="#teams_s">
-              <i class="bi bi-pencil-square"></i>
-            </button>
-          </div>
-          <h6 class="card-subtitle mb-1 fw-bold">Picture </h6>
+            <div class="card-body">
+                <div class="d-flex align-item-center justify-content-between">
+                  <h5 class="card-title m-0">Management Team</h5>
+                  <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-3 bg-success" data-bs-toggle="modal" data-bs-target="#teams_s">
+                  <i class="bi bi-person-fill-add "></i>
+                  </button>
+                </div>
+              <h6 class="card-subtitle mb-1 fw-bold">Picture </h6>
+            </div>
         </div>
-      </div>
 
         <!--members form modal  -->
 
@@ -273,7 +273,7 @@ adminLogin();
                    
                   </div>
                   <div class="modal-footer">
-                    <button type="button" onclick="site_title_inp.value = general_data.site_title_db, site_about_inp.value= general_data.site_about_db" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" onclick="" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn custom-bg text-green shadow-none">Submit</button>
 
                   </div>
@@ -453,55 +453,20 @@ adminLogin();
       add_member()
     })
 
-    // function add_member() {
 
-    //   let data = new FormData();
-    //   data.append('name', member_name_inp.value);
-    //   data.append('picture', member_picture_inp.files[0]);
-    //   data.append('add_member', ' ');
-
-    //   let xhr = new XMLHttpRequest();
-    //   xhr.open('POST', "ajax/setting_crud.php", true);
-    //   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    //   xhr.onload = function() {
-    //     // try {
-    //           // const response = JSON.parse(this.responseText);
-    //           let myModal = document.getElementById('teams_s');
-    //           let modal = bootstrap.Modal.getInstance(myModal);
-    //           modal.hide();
-    //           console.log(this.responseText);
-    //           if (this.responseText == 'inv_size') {
-    //             alert('error', 'The image is larger than 2MB!');
-    //           } else if (this.responseText == 'inv_img') {
-    //             alert('error', 'The image format is invalid!');
-    //           } else if (this.responseText == 'upd_failed') {
-    //             alert('error', 'Failed to upload');
-    //           } else {
-    //             alert('success', 'Upload successful!');
-    //           }
-    //           console.log(data);
-    //             xhr.send(data);
-    //     //     }
-           
-    //     //  catch (error) {
-    //     //   console.error("Error parsing JSON:", error);
-    //     //   // Handle the error or response gracefully
-    //     // }
-    //   }
-    // }
-
-    function add_member(){
-      let data = new FormData()
-      data.append('name',member_name_inp.value)
-      data.append('picture', member_picture_inp.files[0]);
-      data.append('add_member', '')
-      
-      let xhr = new XMLHttpRequest();
-      xhr.open('POST', "ajax/setting_crud.php", true)
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-
-      xhr.onload = function() { 
-            // module hidden  
+  function add_member() {
+   let data = new FormData();
+   console.log(member_name_inp.value); // Log input values to check if they are present
+   console.log(member_picture_inp.files[0]);
+   data.append('name', member_name_inp.value);
+   data.append('picture', member_picture_inp.files[0]);
+   data.append('add_member', '');
+  //  C:\xampp\htdocs\Hotel-Booking\Hotel-Booking-System.io\admin\
+   let xhr = new XMLHttpRequest();
+   xhr.open('POST', "ajax/setting_crud.php", true);
+   xhr.onload = function () {
+      console.log(this.responseText);
+                  // module hidden  
             let myModal = document.getElementById('teams_s')
             let modal = bootstrap.Modal.getInstance(myModal)
             modal.hide()
@@ -513,10 +478,9 @@ adminLogin();
               }else if(this.responseText == 'upd_failed'){
                 alert('error','failed to upload')}
               else{alert('success', 'upload successfully !') }
-      }
-      xhr.send(data)
-
-    }
+   }
+   xhr.send(data);
+}
     window.onload = function() {
       get_general()
       get_contacts()
