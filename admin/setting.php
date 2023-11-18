@@ -247,7 +247,21 @@ adminLogin();
                   <i class="bi bi-person-fill-add "></i>
                   </button>
                 </div>
-              <h6 class="card-subtitle mb-1 fw-bold">Picture </h6>
+              
+
+              <div class="row" id = "team_data">
+                  <!-- <div class="col-md-2 mb-3">
+                        <div class="card bg-dark text-white text-end ">
+                          <img src="../image/admin/IMG_30741.jpg" class="card-img">
+                          <div class="card-img-overlay">
+                              <button type="button" class="btn btn-danger btn-sm shadow-none"><i class="bi bi-person-dash-fill"></i></button>
+                            </div>
+                            <p class="card-text text-center px-3 py-2">Random Name</p>
+                        </div>
+                  </div> -->
+              </div>
+
+
             </div>
         </div>
 
@@ -455,35 +469,75 @@ adminLogin();
 
 
   function add_member() {
-   let data = new FormData();
-   console.log(member_name_inp.value); // Log input values to check if they are present
-   console.log(member_picture_inp.files[0]);
-   data.append('name', member_name_inp.value);
-   data.append('picture', member_picture_inp.files[0]);
-   data.append('add_member', '');
-  //  C:\xampp\htdocs\Hotel-Booking\Hotel-Booking-System.io\admin\
-   let xhr = new XMLHttpRequest();
-   xhr.open('POST', "ajax/setting_crud.php", true);
-   xhr.onload = function () {
-      console.log(this.responseText);
-                  // module hidden  
-            let myModal = document.getElementById('teams_s')
-            let modal = bootstrap.Modal.getInstance(myModal)
-            modal.hide()
-              // console.log(this.responseText);
-                if (this.responseText == 'inv_size' ) {
-                alert('error', 'The image is larger the 2MB!')
-              }else if(this.responseText == 'inv_img'){
-                alert('error', 'The image is formate invalid !')
-              }else if(this.responseText == 'upd_failed'){
-                alert('error','failed to upload')}
-              else{alert('success', 'upload successfully !') }
-   }
-   xhr.send(data);
+    let data = new FormData();
+    //console.log(member_name_inp.value); // Log input values to check if they are present
+    //console.log(member_picture_inp.files[0]);
+    data.append('name', member_name_inp.value);
+    data.append('picture', member_picture_inp.files[0]);
+    data.append('add_member', '');
+    //  C:\xampp\htdocs\Hotel-Booking\Hotel-Booking-System.io\admin\
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', "ajax/setting_crud.php", true);
+    xhr.onload = function () {
+        // console.log(this.responseText);
+             // module hidden  
+              let myModal = document.getElementById('teams_s')
+              let modal = bootstrap.Modal.getInstance(myModal)
+              modal.hide()
+                // console.log(this.responseText);
+                  if (this.responseText == 'inv_size' ) {
+                  alert('error', 'The image is larger the 2MB!')
+                }else if(this.responseText == 'inv_img'){
+                  alert('error', 'The image is formate invalid !')
+                }else if(this.responseText == 'upd_failed'){
+                  alert('error','failed to upload')}
+                else{
+                  alert('success', 'upload successfully !'); 
+                  get_members();
+                }
+    }
+    xhr.send(data);
 }
+
+function get_members(){
+  
+      let xhr = new XMLHttpRequest();
+      xhr.open('POST', "ajax/setting_crud.php", true)
+          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+
+          xhr.onload = function() {
+            document.getElementById('team_data').innerHTML = this.responseText;
+          }
+          xhr.send('get_members')
+
+
+}
+
+
+
+function rem_member(val){
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', "ajax/setting_crud.php", true)
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+
+      xhr.onload = function() {
+        if(this.responseText==1){
+          alert('success','Member removed!')
+          get_members()
+        }else{
+          alert('error','Server Down!')
+        }
+      }
+      xhr.send('rem_member='+val)
+}
+
+
+
     window.onload = function() {
       get_general()
       get_contacts()
+      get_members()
       // add_member()
     }
 

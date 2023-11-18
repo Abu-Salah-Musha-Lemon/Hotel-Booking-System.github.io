@@ -25,8 +25,14 @@ function alert($type, $msg){
     alert;
 } 
 
+// forntend purpose data 
+
+define( 'SITE_URL','http://127.0.0.1//Hotel-Booking/Hotel-Booking-System.io/');
+define('ABOUT_IMG_PATH',SITE_URL.'image/about/');
+
+// backend upload process needs this data
 define('UPLOAD_IMAGE_PATH', $_SERVER['DOCUMENT_ROOT'].'/Hotel-Booking/Hotel-Booking-System.io/image/');
-define('ABOUT_US','admin/');
+define('ABOUT_US','about/');
 
 function uploadImage($image, $folder){
   $valid_mime = ['image/jpg','image/jpeg','image/png',];
@@ -49,8 +55,13 @@ function uploadImage($image, $folder){
     }
   }
 }
-function delete($sr_no){
-  
+function deleteImage($image, $folder){
+  echo UPLOAD_IMAGE_PATH.$folder.$image;
+  if(unlink(UPLOAD_IMAGE_PATH.$folder.$image)){
+    return true;
+  }else {
+    return false;
+  }
 }
  
 ?>
