@@ -13,7 +13,7 @@ adminLogin();
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel - USER query</title>
+  <title>Admin Panel - User Query </title>
   <?php require_once './inc/link.php' ?>
 </head>
 
@@ -27,7 +27,7 @@ adminLogin();
         <h3 class="mb-4">User Query</h3>
           <?php
           if(isset($_GET['seen'])){
-          $frm_data = filteration($_GET);
+          $frm_data = filtration($_GET);
           if ($frm_data['seen'] == 'all') {
             $q = "UPDATE `user_query` SET `sr_no` = ?";
             $value = [1];
@@ -49,7 +49,7 @@ adminLogin();
             }
           }
           if(isset($_GET['del'])){
-              $frm_data = filteration($_GET);
+              $frm_data = filtration($_GET);
             if ($frm_data['del']== 'all') {
                 $del = $_GET['del'];
                 $q = "DELETE FROM `user_query`";

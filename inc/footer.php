@@ -45,6 +45,7 @@
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+	<script src="../bootstrap5.3.2.bundle.min.js"></script>
 	<script>
 		function setActive() {
 			let nav_bar = document.getElementById('nav-bar')

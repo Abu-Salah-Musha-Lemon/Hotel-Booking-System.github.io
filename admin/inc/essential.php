@@ -29,10 +29,12 @@ function alert($type, $msg){
 
 define( 'SITE_URL','http://127.0.0.1//Hotel-Booking/Hotel-Booking-System.io/');
 define('ABOUT_IMG_PATH',SITE_URL.'image/about/');
+define('CAROUSEL_IMG_PATH',SITE_URL.'image/carousel/');
 
 // backend upload process needs this data
 define('UPLOAD_IMAGE_PATH', $_SERVER['DOCUMENT_ROOT'].'/Hotel-Booking/Hotel-Booking-System.io/image/');
 define('ABOUT_US','about/');
+define('CAROUSEL_US','carousel/');
 
 function uploadImage($image, $folder){
   $valid_mime = ['image/jpg','image/jpeg','image/png',];

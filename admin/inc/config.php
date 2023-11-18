@@ -6,7 +6,7 @@ $db_name = 'hotelBooking';
 $con = mysqli_connect($host,$user,$pass,$db_name);
 
 if (!$con) {
-  die('connection Faild'. mysqli_connect_errno());
+  die('connection Failed'. mysqli_connect_errno());
 }
 function filtration($data){
   foreach($data as $key=>$value){

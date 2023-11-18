@@ -84,23 +84,20 @@
     <div class="container px-4">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper mb-5">
-                <div class="swiper-slide bg-white text-center overfollow-hidden rounded p-4 shadow-sm">
-                    <img src="https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        alt="" class="w-100  rounded">
-                    <h4 class="mt-2"> Random Name</h4>
-                </div>
 
-                <div class="swiper-slide bg-white text-center overfollow-hidden rounded p-4 shadow-sm">
-                    <img src="https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        alt="" class="w-100  rounded">
-                    <h4 class="mt-2"> Random Name</h4>
-                </div>
-                <div class="swiper-slide bg-white text-center overfollow-hidden rounded p-4 shadow-sm">
-                    <img src="https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        alt="" class="w-100  rounded">
-                    <h4 class="mt-2"> Random Name</h4>
-                </div>
-
+            <?php 
+                $about_r = selectAll('team_details');
+                while ($row = mysqli_fetch_assoc($about_r)) {
+                    $path = ABOUT_IMG_PATH;
+                    echo <<<data
+                            <div class="swiper-slide bg-white text-center overfollow-hidden rounded p-4 shadow-sm">
+                                <img src="$path$row[tm_picture_db]"
+                                    alt="" class="w-100  rounded">
+                                <h4 class="mt-2">$row[tm_name_db]</h4>
+                            </div>
+                    data;
+                }
+            ?>
             </div>
             <div class="swiper-pagination"></div>
         </div>

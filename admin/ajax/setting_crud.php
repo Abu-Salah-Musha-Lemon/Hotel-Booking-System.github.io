@@ -103,7 +103,7 @@ if(isset($_POST['get_members'])){
 
 if (isset($_POST['rem_member'])) {
    $frm_data = filtration($_POST);
-   echo $value = [$frm_data['rem_member']];
+   $value = [$frm_data['rem_member']];
    $pre_Q = " SELECT * FROM `team_details` WHERE `sr_no` = ?";
    $res = select($pre_Q, $value,'i');
    $img = mysqli_fetch_assoc($res);

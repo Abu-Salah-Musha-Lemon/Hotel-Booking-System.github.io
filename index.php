@@ -33,18 +33,18 @@
 	<div class="container-fluit px-lg-4 mt-2">
 		<div class="swiper swiper-container">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-1.jpg" class="w-100 d-block" style="height:600px;object:cover" />
-				</div>
-				<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-2.jpg" class="w-100 d-block" style="height:600px;object:cover" />
-				</div>
-				<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-3.jpg" class="w-100 d-block" style="height:600px;object:cover" />
-				</div>
-				<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-4.jpg" class="w-100 d-block" style="height:600px;object:cover" />
-				</div>
+
+				<?php
+				   $res = selectAll('carousel');
+					 $path = CAROUSEL_IMG_PATH;
+					 while ($row = mysqli_fetch_assoc($res)) {
+							echo <<<data
+								<div class="swiper-slide">
+										<img src="$path$row[db_picture]"  class="w-100 d-block" style="height:600px;object:cover" />
+								</div>
+							data;
+					 }
+				?>
 			</div>
 		</div>
 	</div>

@@ -45,7 +45,7 @@ if (isset($_SESSION['adminLogin'])&& $_SESSION['adminLogin']==true) {
   </div>
 <?php 
 if(isset($_POST['login'])){
-  $frm_data = filteration($_POST);
+  $frm_data = filtration($_POST);
   
   $query = "SELECT * FROM `admin` WHERE `admin_name`=? AND `admin_pass`=? ";
   $value = [$frm_data['admin_name'], $frm_data['admin_pass']];
