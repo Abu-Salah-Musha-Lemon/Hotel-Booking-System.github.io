@@ -34,7 +34,7 @@ if(isset($_POST['get_carousel'])){
                      <div class="card bg-dark text-white text-end ">
                      <img src="$path$row[db_picture]" class="card-img">
                         <div class="card-img-overlay">
-                              <button type="button" onclick='rem_image($row[sr_no])' class="btn btn-danger btn-sm shadow-none"><i class="bi bi-person-dash-fill"></i></button>
+                              <button type="button" onclick='rem_image($row[sr_no])' class="btn btn-danger btn-sm shadow-none"><i class="bi bi-trash3"></i></button>
                            </div>
                         </div>
                </div>

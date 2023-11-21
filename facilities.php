@@ -30,72 +30,27 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-lg-4 col-md-6 mb-5 px-4">
-			<div class="bg-white rounded shadow-sm p-4 border-top border-4 border-dark pop">
-				<div class="d-flex align-items-center">
-				<i class="bi bi-wifi fw-bold fs-4"></i>
-				<h5 class="m-0 ms-3">Wifi</h5>
-				</div>
-				<p>
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis eaque provident quibusdam consequuntur officia qui enim culpa vero consectetur, placeat dolore molestiae. Assumenda soluta cum alias necessitatibus vero. Consequatur, dicta?
-				</p>
-			</div>
-		</div>
-		<div class="col-lg-4 col-md-6 mb-5 px-4">
-			<div class="bg-white rounded shadow-sm p-4 border-top border-4 border-dark pop">
-				<div class="d-flex align-items-center">
-				<i class="bi bi-wifi fw-bold fs-4"></i>
-				<h5 class="m-0 ms-3">Wifi</h5>
-				</div>
-				<p>
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis eaque provident quibusdam consequuntur officia qui enim culpa vero consectetur, placeat dolore molestiae. Assumenda soluta cum alias necessitatibus vero. Consequatur, dicta?
-				</p>
-			</div>
-		</div>
-		<div class="col-lg-4 col-md-6 mb-5 px-4">
-			<div class="bg-white rounded shadow-sm p-4 border-top border-4 border-dark pop">
-				<div class="d-flex align-items-center">
-				<i class="bi bi-wifi fw-bold fs-4"></i>
-				<h5 class="m-0 ms-3">Wifi</h5>
-				</div>
-				<p>
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis eaque provident quibusdam consequuntur officia qui enim culpa vero consectetur, placeat dolore molestiae. Assumenda soluta cum alias necessitatibus vero. Consequatur, dicta?
-				</p>
-			</div>
-		</div>
-		<div class="col-lg-4 col-md-6 mb-5 px-4">
-			<div class="bg-white rounded shadow-sm p-4 border-top border-4 border-dark pop">
-				<div class="d-flex align-items-center">
-				<i class="bi bi-wifi fw-bold fs-4"></i>
-				<h5 class="m-0 ms-3">Wifi</h5>
-				</div>
-				<p>
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis eaque provident quibusdam consequuntur officia qui enim culpa vero consectetur, placeat dolore molestiae. Assumenda soluta cum alias necessitatibus vero. Consequatur, dicta?
-				</p>
-			</div>
-		</div>
-		<div class="col-lg-4 col-md-6 mb-5 px-4">
-			<div class="bg-white rounded shadow-sm p-4 border-top border-4 border-dark pop">
-				<div class="d-flex align-items-center">
-				<i class="bi bi-wifi fw-bold fs-4"></i>
-				<h5 class="m-0 ms-3">Wifi</h5>
-				</div>
-				<p>
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis eaque provident quibusdam consequuntur officia qui enim culpa vero consectetur, placeat dolore molestiae. Assumenda soluta cum alias necessitatibus vero. Consequatur, dicta?
-				</p>
-			</div>
-		</div>
-		<div class="col-lg-4 col-md-6 mb-5 px-4">
-			<div class="bg-white rounded shadow-sm p-4 border-top border-4 border-dark pop">
-				<div class="d-flex align-items-center">
-				<i class="bi bi-wifi fw-bold fs-4"></i>
-				<h5 class="m-0 ms-3">Wifi</h5>
-				</div>
-				<p>
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis eaque provident quibusdam consequuntur officia qui enim culpa vero consectetur, placeat dolore molestiae. Assumenda soluta cum alias necessitatibus vero. Consequatur, dicta?
-				</p>
-			</div>
-		</div>
+
+	<?php
+		$res = selectAll('facilities');
+		$path= FACILITIES_IMG_PATH;
+
+			while ($row = mysqli_fetch_assoc($res)) {
+				echo <<<data
+							<div class="col-lg-4 col-md-6 mb-5 px-4">
+								<div class="bg-white rounded shadow-sm p-4 border-top border-4 border-dark pop">
+									<div class="d-flex align-items-center">
+										<img src="$path$row[db_icon]" style="width:100px;height:100px;">
+										<h5 class="m-0 ms-3">$row[db_name]</h5>
+										</div>
+										<p>$row[db_desc]</p>
+								</div>
+							</div>
+				data;
+			}
+
+	?>
+
 	</div>
 </div>
 

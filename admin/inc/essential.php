@@ -25,16 +25,18 @@ function alert($type, $msg){
     alert;
 } 
 
-// forntend purpose data 
+// frontend purpose data 
 
 define( 'SITE_URL','http://127.0.0.1//Hotel-Booking/Hotel-Booking-System.io/');
 define('ABOUT_IMG_PATH',SITE_URL.'image/about/');
 define('CAROUSEL_IMG_PATH',SITE_URL.'image/carousel/');
+define('FACILITIES_IMG_PATH',SITE_URL.'image/facilities/');
 
 // backend upload process needs this data
 define('UPLOAD_IMAGE_PATH', $_SERVER['DOCUMENT_ROOT'].'/Hotel-Booking/Hotel-Booking-System.io/image/');
 define('ABOUT_US','about/');
 define('CAROUSEL_US','carousel/');
+define('FACILITIES_US','facilities/');
 
 function uploadImage($image, $folder){
   $valid_mime = ['image/jpg','image/jpeg','image/png',];
@@ -66,4 +68,25 @@ function deleteImage($image, $folder){
   }
 }
  
+function uploadSVGImage($image, $folder){
+  $valid_mime = ['image/svg+xml',];
+  $image_mime =['type'];
+  
+  if(in_array($image_mime,$valid_mime)){
+    return 'inv_img'; // invalid image extension or formate
+  }
+  else if (($image['size']/(1024*1024))>2) {
+    return "inv_img"; // invalid size greater than 2mb
+  }
+  else {
+    $ext =pathinfo($image['name'],PATHINFO_EXTENSION);
+    $rname = 'IMG_'.random_int(11111,99999).".$ext";
+    $img_path = UPLOAD_IMAGE_PATH.$folder.$rname;
+    if (move_uploaded_file($image['tmp_name'], $img_path)) {
+      return $rname;
+    }else{
+      return 'upd_failed'; 
+    }
+  }
+}
 ?>

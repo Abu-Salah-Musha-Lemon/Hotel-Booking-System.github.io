@@ -101,46 +101,57 @@ $contact_r =mysqli_fetch_assoc( select($contact_q, $value,'i'));
 							during check-in.
 						</span>
 
-						<div class="container-fluit">
+						<div class="container-fluid">
 							<div class="row">
+								
 								<div class="col-md-6 ps-0 mb-3">
 									<label class="form-label">Name</label>
 									<input type="text" class="form-control shadow-none">
 								</div>
+
 								<div class="col-md-6 ps-0 mb-3">
 									<label class="form-label">Email</label>
 									<input type="email" class="form-control shadow-none">
 								</div>
+
 								<div class="col-md-6 ps-0 mb-3">
 									<label class="form-label">Phone Nuber</label>
 									<input type="number" class="form-control shadow-none">
 								</div>
+
 								<div class="col-md-6 ps-0 mb-3">
 									<label class="form-label">Picture</label>
 									<input type="file" class="form-control shadow-none">
 								</div>
+
 								<div class="col-md-12 ps-0 mb-3">
 									<label class="form-label">Address</label>
 									<textarea name="" id="" cols="0" rows="1" class="form-control shadow-none"></textarea>
 								</div>
+
 								<div class="col-md-6 ps-0 mb-3">
 									<label class="form-label">Pincode</label>
 									<input type="number" class="form-control shadow-none">
 								</div>
+
 								<div class="col-md-6 ps-0 mb-3">
 									<label class="form-label">Date of Birth</label>
 									<input type="date" class="form-control shadow-none">
 								</div>
+
 								<div class="col-md-6 ps-0 mb-3">
 									<label class="form-label">Password</label>
 									<input type="password" class="form-control shadow-none">
 								</div>
+
 								<div class="col-md-6 ps-0 mb-3">
 									<label class="form-label">Confirm Password</label>
 									<input type="password" class="form-control shadow-none">
 								</div>
+
 							</div>
 						</div>
+
 						<div class="text-center my-1">
 							<button type="submit" class="btn btn-dark shadow-none">REGISTER</button>
 						</div>

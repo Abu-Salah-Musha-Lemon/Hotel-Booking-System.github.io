@@ -189,6 +189,7 @@ function add_member() {
                 alert('error','failed to upload')}
               else{
                 alert('success', 'upload successfully !'); 
+                member_name_inp.value ='';
                 get_members();
               }
   }

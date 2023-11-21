@@ -20,22 +20,22 @@ adminLogin();
 
 
   <div class="col-lg-10 ms-auto p-4 overflow-hidden">
-    <div class="container-fluit" id="main-content">
+    <div class="container-fluid" id="main-content">
       <div class="row">
         <h3 class="mb-4">Carousel</h3>
 
-        <!-- MANAGEMENT TEAMS Setting section -->
+        <!-- Carousel section -->
 
         <div class="card rounded shadow-sm mb-4">
             <div class="card-body">
+
                 <div class="d-flex align-item-center justify-content-between">
                   <h5 class="card-title m-0">Images</h5>
-                  <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-3 bg-success" data-bs-toggle="modal" data-bs-target="#carousel_s">
-                  <i class="bi bi-person-fill-add "></i>
+                  <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-3" data-bs-toggle="modal" data-bs-target="#carousel_s">
+                  <i class="bi bi-file-earmark-plus"></i>
                   </button>
                 </div>
-              
-
+            
               <div class="row" id = "carousel_data">
               </div>
 
@@ -70,7 +70,6 @@ adminLogin();
             </div>
           </div>
         </div>
-        <?php //echo $_SERVER['DOCUMENT_ROOT'];?>
 
       </div>
     </div>

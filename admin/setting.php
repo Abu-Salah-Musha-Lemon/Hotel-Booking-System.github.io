@@ -243,8 +243,8 @@ adminLogin();
             <div class="card-body">
                 <div class="d-flex align-item-center justify-content-between">
                   <h5 class="card-title m-0">Management Team</h5>
-                  <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-3 bg-success" data-bs-toggle="modal" data-bs-target="#teams_s">
-                  <i class="bi bi-person-fill-add "></i>
+                  <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-3" data-bs-toggle="modal" data-bs-target="#teams_s">
+                  <i class="bi bi-file-earmark-plus"></i>
                   </button>
                 </div>
               

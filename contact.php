@@ -111,12 +111,12 @@
 </div>
 <?php
 if (isset($_POST['send'])) {
-	$frm_data = filteration($_POST);
+	$frm_data = filtration($_POST);
 	$q = "INSERT INTO `user_query`( `db_name`, `db_email`, `db_subject`, `db_message`) VALUES (?,?,?,?)";
 	$value = [$frm_data['name'],$frm_data['email'],$frm_data['subject'],$frm_data['message']];
 	$res = insert($q,$value,'ssss');
 	if ($res == 1) {
-		alert('success','send message');
+		alert('success',' Message send');
 	}else{
 		alert('error','Massage send failed');
 	}
