@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2023 at 01:36 AM
+-- Generation Time: Nov 23, 2023 at 12:44 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -43,6 +43,26 @@ INSERT INTO `admin` (`sr_no`, `admin_name`, `admin_pass`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `carousel`
+--
+
+CREATE TABLE `carousel` (
+  `sr_no` int(11) NOT NULL,
+  `db_picture` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `carousel`
+--
+
+INSERT INTO `carousel` (`sr_no`, `db_picture`) VALUES
+(2, 'IMG_60840.jpg'),
+(3, 'IMG_49447.png'),
+(4, 'IMG_12983.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `contact_details`
 --
 
@@ -64,7 +84,118 @@ CREATE TABLE `contact_details` (
 --
 
 INSERT INTO `contact_details` (`sr_no`, `address_db`, `gmap_db`, `pn1_db`, `pn2_db`, `email_db`, `fb_db`, `insta_db`, `tw_db`, `iframe_db`) VALUES
-(2, 'XYZ, JatraBark, Dhaka 1204', 'https://goo.gl/maps/HFvB8rHkUVgYECKZ7', 990045555, 8812345555, 'asmlhote@gmail.com', 'https://www.facebook.com/', 'https://www.facebook.com/', 'https://www.facebook.com/', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d233668.06396869835!2d90.25487678497385!3d23.780753030831328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81:0x8fa563bbdd5904c2!2sDhaka!5e0!3m2!1sen!2sbd!4v1699027044198!5m2!1sen!2sbd');
+(2, 'XYZ, JatraBark, Dhaka 1', 'https://goo.gl/maps/HFvB8rHkUVgYECKZ7', 990045555, 8812345555, 'asmlhote@gmail.com', 'https://www.facebook.com/', 'https://www.instagram.com/', 'https://twitter.com/', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d233668.06396869835!2d90.25487678497385!3d23.780753030831328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81:0x8fa563bbdd5904c2!2sDhaka!5e0!3m2!1sen!2sbd!4v1699027044198!5m2!1sen!2sbd');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `facilities`
+--
+
+CREATE TABLE `facilities` (
+  `sr_no` int(11) NOT NULL,
+  `db_name` varchar(200) NOT NULL,
+  `db_icon` varchar(100) NOT NULL,
+  `db_desc` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `facilities`
+--
+
+INSERT INTO `facilities` (`sr_no`, `db_name`, `db_icon`, `db_desc`) VALUES
+(25, 'wifi', 'IMG_63577.svg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#039;Content her'),
+(26, 'tv', 'IMG_21637.svg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#039;Content her'),
+(27, 'ac', 'IMG_81257.svg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#039;Content her'),
+(28, 'fire', 'IMG_21478.svg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#039;Content her');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `features`
+--
+
+CREATE TABLE `features` (
+  `sr_no` int(11) NOT NULL,
+  `db_fea_name` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `features`
+--
+
+INSERT INTO `features` (`sr_no`, `db_fea_name`) VALUES
+(7, 'leon'),
+(8, 'leon');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rooms`
+--
+
+CREATE TABLE `rooms` (
+  `sr_no` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `area` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `adult` int(11) NOT NULL,
+  `child` int(11) NOT NULL,
+  `desc` varchar(255) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rooms`
+--
+
+INSERT INTO `rooms` (`sr_no`, `name`, `area`, `price`, `quantity`, `adult`, `child`, `desc`, `status`) VALUES
+(36, 'adf', 123, 300, 2, 4, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, reiciendis! Fugiat tempora maxime, ipsum dolorem, sed corrupti delectus, nihil eveniet rem provident aut est sit! Ullam quisquam laboriosam assumenda vero.', 0),
+(37, 'B02', 240, 400, 3, 3, 2, 'adf', 1),
+(38, 'B03', 123, 123, 2, 2, 1, 'sdf', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rooms_facilities`
+--
+
+CREATE TABLE `rooms_facilities` (
+  `sr_no` int(11) NOT NULL,
+  `rooms_id` int(11) NOT NULL,
+  `facilities_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rooms_facilities`
+--
+
+INSERT INTO `rooms_facilities` (`sr_no`, `rooms_id`, `facilities_id`) VALUES
+(10, 36, 25),
+(11, 37, 25),
+(12, 38, 25);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rooms_features`
+--
+
+CREATE TABLE `rooms_features` (
+  `sr_no` int(11) NOT NULL,
+  `rooms_id` int(11) NOT NULL,
+  `features_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rooms_features`
+--
+
+INSERT INTO `rooms_features` (`sr_no`, `rooms_id`, `features_id`) VALUES
+(2, 36, 7),
+(3, 37, 7),
+(4, 38, 7);
 
 -- --------------------------------------------------------
 
@@ -84,7 +215,7 @@ CREATE TABLE `setting` (
 --
 
 INSERT INTO `setting` (`sr_no`, `site_title_db`, `site_about_db`, `shutdown_db`) VALUES
-(1, 'lemon 1', 'Ahmed Lemon', 0);
+(1, 'ASML', 'Welcome to asmL hotel', 0);
 
 -- --------------------------------------------------------
 
@@ -103,8 +234,9 @@ CREATE TABLE `team_details` (
 --
 
 INSERT INTO `team_details` (`sr_no`, `tm_name_db`, `tm_picture_db`) VALUES
-(1, 'lemon', ''),
-(2, 'lemon', '');
+(20, 'leon', 'IMG_30180.jpg'),
+(21, 'lemon', 'IMG_34294.jpg'),
+(22, 'redoy', 'IMG_11467.png');
 
 -- --------------------------------------------------------
 
@@ -123,16 +255,6 @@ CREATE TABLE `user_query` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user_query`
---
-
-INSERT INTO `user_query` (`sr_no`, `db_name`, `db_email`, `db_subject`, `db_message`, `db_date`, `db_seen`) VALUES
-(1, 'lemon lemon', 'lemon@gmail.com', 'room', 'asdf', '2023-11-10', 0),
-(2, 'lemon lemon', 'lemon@gmail.com', 'room', 'asdf', '2023-11-10', 0),
-(3, 'leon', 'lemon@gmail.com', 'room', 'asdf', '2023-11-10', 0),
-(4, 'lemon', 'lemon@gmail.com', 'room', 'wer', '2023-11-10', 1);
-
---
 -- Indexes for dumped tables
 --
 
@@ -143,10 +265,50 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`sr_no`);
 
 --
+-- Indexes for table `carousel`
+--
+ALTER TABLE `carousel`
+  ADD PRIMARY KEY (`sr_no`);
+
+--
 -- Indexes for table `contact_details`
 --
 ALTER TABLE `contact_details`
   ADD PRIMARY KEY (`sr_no`);
+
+--
+-- Indexes for table `facilities`
+--
+ALTER TABLE `facilities`
+  ADD PRIMARY KEY (`sr_no`);
+
+--
+-- Indexes for table `features`
+--
+ALTER TABLE `features`
+  ADD PRIMARY KEY (`sr_no`);
+
+--
+-- Indexes for table `rooms`
+--
+ALTER TABLE `rooms`
+  ADD PRIMARY KEY (`sr_no`);
+
+--
+-- Indexes for table `rooms_facilities`
+--
+ALTER TABLE `rooms_facilities`
+  ADD PRIMARY KEY (`sr_no`),
+  ADD KEY `rooms id` (`rooms_id`),
+  ADD KEY `facilities id` (`facilities_id`);
+
+--
+-- Indexes for table `rooms_features`
+--
+ALTER TABLE `rooms_features`
+  ADD PRIMARY KEY (`sr_no`),
+  ADD KEY `features id` (`features_id`),
+  ADD KEY `rm id` (`rooms_id`);
 
 --
 -- Indexes for table `setting`
@@ -177,10 +339,46 @@ ALTER TABLE `admin`
   MODIFY `sr_no` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `carousel`
+--
+ALTER TABLE `carousel`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `contact_details`
 --
 ALTER TABLE `contact_details`
   MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `facilities`
+--
+ALTER TABLE `facilities`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `features`
+--
+ALTER TABLE `features`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `rooms`
+--
+ALTER TABLE `rooms`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT for table `rooms_facilities`
+--
+ALTER TABLE `rooms_facilities`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `rooms_features`
+--
+ALTER TABLE `rooms_features`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `setting`
@@ -192,13 +390,31 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `team_details`
 --
 ALTER TABLE `team_details`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `user_query`
 --
 ALTER TABLE `user_query`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `rooms_facilities`
+--
+ALTER TABLE `rooms_facilities`
+  ADD CONSTRAINT `facilities id` FOREIGN KEY (`facilities_id`) REFERENCES `facilities` (`sr_no`) ON UPDATE NO ACTION,
+  ADD CONSTRAINT `rooms id` FOREIGN KEY (`rooms_id`) REFERENCES `rooms` (`sr_no`) ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `rooms_features`
+--
+ALTER TABLE `rooms_features`
+  ADD CONSTRAINT `features id` FOREIGN KEY (`features_id`) REFERENCES `features` (`sr_no`),
+  ADD CONSTRAINT `rm id` FOREIGN KEY (`rooms_id`) REFERENCES `rooms` (`sr_no`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
