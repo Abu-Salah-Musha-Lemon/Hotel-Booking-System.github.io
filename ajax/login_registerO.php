@@ -50,17 +50,23 @@ if (isset($_POST['register_form'])) {
 // // login
 if (isset($_POST['login'])) {
   $data = filtration($_POST);
-  $u_exist = select('SELECT * FROM `user_cred` WHERE `email`=? AND `password`=? LIKE 1', [$data['email_mob'], $data['password']], 'ss');
+  $u_exist = select('SELECT * FROM `user_cred` WHERE `email`=? OR `password`=? 
+  LIKE 1', [$data['email_mob'], $data['password']], 'ss');
 
   if (mysqli_num_rows($u_exist) == 0) {
     echo 'inv_email_mob';
+    exit;
   } else {
     $u_fetch = mysqli_fetch_assoc($u_exist);
-    echo $u_fetch or die();
+    // echo $u_fetch or die();
     if ($u_fetch['status'] == 0) {
       echo 'inactive';
-    } else if (
-      !password_verify($data['password'], $u_fetch['password'])) {
+    } else if(empty($data['email_mob'])||empty($data['password'])){
+      echo 'empty';
+      exit;
+    }
+    else if (
+      $data['password']!== $u_fetch['password']) {
         echo 'invalid_pass';
       } 
       else {
@@ -69,6 +75,7 @@ if (isset($_POST['login'])) {
         $_SESSION['uId'] = $u_fetch['sr_no'];
         $_SESSION['uName'] = $u_fetch['name'];
         $_SESSION['uPhone'] = $u_fetch['phone'];
+        $_SESSION['uPic'] = $u_fetch['profile'];
         echo 1;
       }
     }

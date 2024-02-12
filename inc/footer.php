@@ -102,73 +102,81 @@
     })
   })
 
-  // let login_form = document.querySelector('#login_form')
+  let login_form = document.querySelector('#login_form')
 
-  // login_form.addEventListener('submit', (e) => {
-    // e.preventDefault()
-    // let data = new FormData()
-    // data.append('email_mob', login_form.elements['email_mob'].value)
-    // data.append('password', login_form.elements['password'].value)
-    // // let loginModal = document.getElementById('loginModal')
-    // // let modal = document.Modal.getInstance(loginModal)
-    // // modal.hide()
-    // $('#loginModal').modal('hide');
-    // let xhr = new XMLHttpRequest()
-    // xhr.open('POST', 'ajax/login_registerO.php', true)
-    //   xhr.onload= function () {
-    //     if(this.responseText== 'inv_email_mob'){
-    //       alert('error','Invalid Email /Mobile Number!')
-    //     }
-    //     else if(this.responseText== 'inactive'){
-    //       alert('error','in active!')
-    //     }
-    //     else if(this.responseText== 'invalid_pass'){
-    //       alert('error','Incorrect Password !')
-    //     }
-    //     else{
-    //       alert('success',"Registration Successful, Congratulation")
-    //       login_form.reset()
-    //     }
-    //   }
-    //   xhr.send(data)
-    // })
+  login_form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    let data = new FormData()
+    data.append('email_mob', login_form.elements['email_mob'].value)
+    data.append('password', login_form.elements['password'].value)
+    data.append('login','')
+    // let loginModal = document.getElementById('loginModal')
+    // let modal = document.Modal.getInstance(loginModal)
+    // modal.hide()
+    $('#loginModal').modal('hide');
+    let xhr = new XMLHttpRequest()
+    xhr.open('POST', 'ajax/login_registerO.php', true)
+      xhr.onload= function (responseText) {
+        if(this.responseText== 'inv_email_mob'){
+          alert('invalid email/ mobile')
+          login_form.reset();
+        }
+        else if(this.responseText== 'inactive'){
+          alert('user has been blocked')
+          login_form.reset();
+        }
+        else if(this.responseText== 'empty'){
+          alert('Enter all the correct Email/Mobile and Password')
+          login_form.reset();
+        }
+        else if(this.responseText== 'invalid_pass'){
+          alert('invalid password')
+          login_form.reset();
+        }
+        else{
+          login_form.reset();
+         window.location = window.location.pathname
+          }
+      }
+      xhr.send(data)
+    })
 
-$(document).ready(function () {
-    let login_form = $('#login_form');
-    login_form.submit(function (e) {
-        e.preventDefault();
+// $(document).ready(function () {
+//     let login_form = $('#login_form');
+//     login_form.submit(function (e) {
+//         e.preventDefault();
 
-        let data = {
-            email_mob: login_form.find('input[name="email_mob"]').val(),
-            password: login_form.find('input[name="password"]').val()
-        };
+//         let data = {
+//             email_mob: login_form.find('input[name="email_mob"]').val(),
+//             password: login_form.find('input[name="password"]').val()
+//         };
 
-        $.ajax({
-            type: 'POST',
-            url: './ajax/login_registerO.php', // Update the path accordingly
-            data: data,
-            success: function (response) {
-              console.log(this.response);
-                if (this.response == 'inv_email_mob') {
-                    alert('Error: Invalid Email / Mobile Number!');
-                } else if (this.response == 'inactive') {
-                    alert('Error: Account is inactive!');
-                } else if (this.response == 'invalid_pass') {
-                    alert('Error: Incorrect Password!');
-                } else if (this.response == 1) {
-                    alert('Success: Login Successful');
-                    login_form[0].reset();
-                } else {
-                    alert('Error: Unknown Response');
-                    console.log(this.response); // Log the response for debugging
-                }
-            },
-            error: function (xhr, status, error) {
-                console.error('AJAX Error:', status, error);
-            }
-        });
-    });
-});
+//         $.ajax({
+//             type: 'POST',
+//             url: './ajax/login_registerO.php', // Update the path accordingly
+//             data: data,
+//             success: function (response) {
+//               console.log(this.response);
+//                 if (this.response == 'inv_email_mob') {
+//                     alert('Error: Invalid Email / Mobile Number!');
+//                 } else if (this.response == 'inactive') {
+//                     alert('Error: Account is inactive!');
+//                 } else if (this.response == 'invalid_pass') {
+//                     alert('Error: Incorrect Password!');
+//                 } else if (this.response == 1) {
+//                     alert('Success: Login Successful');
+//                     login_form[0].reset();
+//                 } else {
+//                     alert('Error: Unknown Response');
+//                     console.log(this.response); // Log the response for debugging
+//                 }
+//             },
+//             error: function (xhr, status, error) {
+//                 console.error('AJAX Error:', status, error);
+//             }
+//         });
+//     });
+// });
 
 
 

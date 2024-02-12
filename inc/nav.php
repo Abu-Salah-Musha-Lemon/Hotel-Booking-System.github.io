@@ -25,7 +25,7 @@ $setting_r =mysqli_fetch_assoc( select($setting_q,$value,'i'));
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item">
 						<a class="nav-link  me-2"  href="index.php">Home</a>
 					</li>
@@ -46,20 +46,21 @@ $setting_r =mysqli_fetch_assoc( select($setting_q,$value,'i'));
 					</li>
 				</ul>
 				<?php
-				print_r( $_SESSION);
+				// print_r( $_SESSION);
 				// session_destroy();
 	if (isset($_SESSION['login'])&& $_SESSION['login']==true) {
 		$path = USER_IMG_PATH;
 		echo <<< data
 				<div class="btn-group">
-				<button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-				<img src="$path$_SESSION[uPic]" style='width:25px; height:25px;' class='me-1'>	
+				<button type="button" class="btn btn-secondary dropdown-toggle shadow-sm" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+				
 				$_SESSION[uName]
 				</button>
 				<ul class="dropdown-menu dropdown-menu-lg-end">
-					<li><button class="dropdown-item" type="button">Action</button></li>
-					<li><button class="dropdown-item" type="button">Another action</button></li>
-					<li><button class="dropdown-item" type="button">Something else here</button></li>
+					<li><a class="dropdown-item" href="profile.php">Profile</a></li>
+					<li><a class="dropdown-item" href="booking.php">Booking</a></li>
+					<li><a class="dropdown-item" href="logout.php">Logout</a></li>
+					
 				</ul>
 			</div>
 		data;
@@ -90,22 +91,54 @@ $setting_r =mysqli_fetch_assoc( select($setting_q,$value,'i'));
 			<div class="modal-content">
 				<form id="login_form">
 					<div class="modal-header">
-						<h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-circle fs-3"></i> User Login</h5>
+						<h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-circle fs-3 text-info px-1"></i> User Login</h5>
 						<button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
 						<div class="mb-4">
 							<label class="form-label">Email address</label>
-							<input type="email" name ="email_mob" class="form-control shadow-none">
+							<input type="email" name ="email_mob" class="form-control shadow-none" require>
 						</div>
 						<div class="mb-4">
 							<label class="form-label">Password</label>
-							<input type="password" name="password" class="form-control shadow-none">
+							<input type="password" name="password" class="form-control shadow-none" require>
 						</div>
 						<div class="d-flex align-items-center justify-content-between mb-2">
-							<button type="submit" name='login' class="btn btn-dark shadow-none">LogIn</button>
-							<a href="javascript:void(0)" class="text-secondary text-decoration-none
-							">Forgot Password</a>
+							<button type="submit" name='login' class="btn btn-outline-success shadow-sm">LogIn</button>
+							<button type="button" class="btn text-secondary text-decoration-none shadow-none me-lg-3 me-3"
+							 data-bs-toggle="modal"data-bs-target="#forgotModal"  data-bs-dismiss="modal">
+							Forgot Password
+							</button>
+							
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+<!-- forgot modal -->
+
+<div class="modal fade" id="forgotModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="forgot_form">
+					<div class="modal-header">
+						<h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-circle fs-3 text-info px-1"></i> User Login</h5>
+						<button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="mb-4">
+							<label class="form-label">Email address</label>
+							<input type="email" name ="email" class="form-control shadow-none" require>
+						</div>
+						<div class="d-flex align-items-center justify-content-between mb-2">
+							<button type="button" class="btn btn-outline-danger shadow-sm" data-bs-dismiss="modal">Close</button>
+							<button type="button" class="btn text-secondary text-decoration-none shadow-none me-lg-3 me-3" data-bs-toggle="modal"data-bs-target="#loginModal"  data-bs-dismiss="modal">
+							send link
+							</button>
+							
 						</div>
 					</div>
 				</form>
@@ -121,7 +154,7 @@ $setting_r =mysqli_fetch_assoc( select($setting_q,$value,'i'));
 
 				<form id="register_form">
 					<div class="modal-header">
-						<h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-lines-fill fs-3"> </i> User
+						<h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-lines-fill fs-3 text-info px-1"> </i> User
 							Registration</h5>
 						<button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
@@ -184,7 +217,7 @@ $setting_r =mysqli_fetch_assoc( select($setting_q,$value,'i'));
 						</div>
 
 						<div class="text-center my-1">
-							<button type="submit" class="btn btn-dark shadow-none">REGISTER</button>
+							<button type="submit" class="btn btn-outline-success shadow-none">REGISTER</button>
 						</div>
 
 
