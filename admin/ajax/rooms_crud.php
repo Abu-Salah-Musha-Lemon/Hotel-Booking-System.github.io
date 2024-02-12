@@ -92,7 +92,8 @@ if(isset($_POST['get_all_rooms'])){
             <td>$status</td>
             
             <td>"?>
-            <button type='button' onclick="edit_details(<?php echo $row['sr_no']; ?>)" class='btn btn-outline-dark shadow-none me-lg-3 me-3' data-bs-toggle='modal' data-bs-target='#edit_rooms'>
+            <button type='button' onclick="edit_details(<?php echo $row['sr_no']; ?>)" class='btn btn-outline-dark shadow-none me-lg-3 me-3' 
+            data-bs-toggle='modal' data-bs-target='#edit_rooms'>
             <i class='bi bi-pencil-square'>edit</i>
             </button>
             </td>

@@ -31,12 +31,15 @@ define( 'SITE_URL','http://127.0.0.1//Hotel-Booking/Hotel-Booking-System.io/');
 define('ABOUT_IMG_PATH',SITE_URL.'image/about/');
 define('CAROUSEL_IMG_PATH',SITE_URL.'image/carousel/');
 define('FACILITIES_IMG_PATH',SITE_URL.'image/facilities/');
+define('ROOMS_IMG_PATH',SITE_URL.'image/rooms/');
+define('USER_IMG_PATH',SITE_URL.'image/user/');
 
 // backend upload process needs this data
 define('UPLOAD_IMAGE_PATH', $_SERVER['DOCUMENT_ROOT'].'/Hotel-Booking/Hotel-Booking-System.io/image/');
 define('ABOUT_US','about/');
 define('CAROUSEL_US','carousel/');
 define('FACILITIES_US','facilities/');
+define('USER','user/');
 
 function uploadImage($image, $folder){
   $valid_mime = ['image/jpg','image/jpeg','image/png',];
@@ -89,4 +92,55 @@ function uploadSVGImage($image, $folder){
     }
   }
 }
+
+function uploadUserImage($image, $folder){
+  $valid_mime = ['image/jpg','image/jpeg','image/png',];
+  $image_mime =['type'];
+  
+  if(in_array($image_mime,$valid_mime)){
+    return 'inv_img'; // invalid image extension or formate
+  }
+
+
+  else {
+    $ext =pathinfo($image['name'],PATHINFO_EXTENSION);
+    $rname = 'IMG_'.random_int(11111,99999).".jpeg";
+    $img_path = UPLOAD_IMAGE_PATH.USER.$rname;
+
+    if ($ext == 'png'||$ext =='PNG') {
+      $img = imagecreatefrompng($image['tmp_name']);
+    }else if($ext=='webp'|| $ext =='WEBP'){
+      $img = imagecreatefromwebp ($image['tmp_name']);
+    }else{
+      $img = imagecreatefromjpeg($image['tmp_name']);
+    }
+
+    // if (imagejpeg($img,$img_path,75%)) {
+    //   return $rname;
+    // }else{
+    //   return 'upd_failed'; 
+    // }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
