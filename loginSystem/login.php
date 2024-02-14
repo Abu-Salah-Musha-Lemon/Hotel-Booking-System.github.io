@@ -1,11 +1,15 @@
 <?php
 $con = mysqli_connect('localhost','root','','test2') or die('connection failed');
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 // print_r($con);
 session_start();
 if (isset($_POST['logIn'])) {
   //  $name = mysqli_real_escape_string($con,$_POST['name']);
    $email = mysqli_real_escape_string($con,$_POST['email']);
    $password = mysqli_real_escape_string($con,$_POST['password']);
+   $v_code = bin2hex(random_bytes(16));
   //  $password =$_POST['password'];
 
    $query = "SELECT `email`, `password` FROM `login` WHERE `email`='{$email}'  OR  `password`='{$password}'";
@@ -15,17 +19,75 @@ if (isset($_POST['logIn'])) {
    if ($result) {
       if (mysqli_num_rows($result)==1) {
         $result_fetch = mysqli_fetch_assoc($result);
-        if (password_verify($password,$result_fetch['password'])) {
-          $_SESSION['login']= true;
-          $_SESSION['userName']= $result_fetch['name'];
-          header('location:index.php');
+        if ($result_fetch['v_code']==1) {
+              if (password_verify($password,$result_fetch['password'])) {
+              $_SESSION['login']= true;
+              $_SESSION['userName']= $result_fetch['name'];
+              header('location:index.php');
+            }
+        }else{
+          echo <<<data
+                  <script>alert('server down')</script>
+                data;
         }
+       
+      }else{
+        echo <<<data
+                <script>alert('server down')</script>
+              data;
       }
    } else {
       echo 'Error: ' . mysqli_error($con);
    }
 }
 
+
+function mailSender($email,$v_cod)
+{
+  require 'path/to/PHPMailer/src/Exception.php';
+  require 'path/to/PHPMailer/src/PHPMailer.php';
+  require 'path/to/PHPMailer/src/SMTP.php';
+
+  require 'vendor/autoload.php';
+
+  //Create an instance; passing `true` enables exceptions
+  $mail = new PHPMailer(true);
+
+  try {
+
+    $mail->isSMTP();                                            //Send using SMTP
+    $mail->Host       = 'smtp.google.com';                     //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+    $mail->Username   = 'asmlemon.nu.cse@gmail.com';                     //SMTP username
+    $mail->Password   = 'mdmushaNuCse';                               //SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+    //Recipients
+    $mail->setFrom('from@example.com', 'Mailer');
+    $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
+    $mail->addAddress('ellen@example.com');               //Name is optional
+    $mail->addReplyTo('info@example.com', 'Information');
+    $mail->addCC('cc@example.com');
+    $mail->addBCC('bcc@example.com');
+
+    //Attachments
+    $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+    $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+    //Content
+    $mail->isHTML(true);                                  //Set email format to HTML
+    $mail->Subject = 'Here is the subject';
+    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+    $mail->send();
+    echo 'Message has been sent';
+  } catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+  }
+
+}
 
 ?>
 
@@ -57,9 +119,10 @@ if (isset($_POST['logIn'])) {
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li> </ul>
-        <?php
-        if (isset($_SESSION['logIn']) && $_SESSION['logIn']== true) {
+            </li>
+          </ul>
+          <?php
+        if (isset($_SESSION['login']) && $_SESSION['login']== true) {
           echo <<< data
               <div class="btn-group">
               <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
@@ -82,8 +145,8 @@ if (isset($_POST['logIn'])) {
         }
 
         ?>
-         
-          
+
+
         </div>
       </div>
     </nav>
@@ -97,11 +160,11 @@ if (isset($_POST['logIn'])) {
         <form method='post'>
           <div class="mb-3">
             <label class="form-label">Email address</label>
-            <input type="email" name= 'email' class="form-control shadow-sm" >
+            <input type="email" name='email' class="form-control shadow-sm">
           </div>
           <div class="mb-3">
             <label class="form-label">Password</label>
-            <input type="password" name= 'password' class="form-control shadow-sm" >
+            <input type="password" name='password' class="form-control shadow-sm">
           </div>
 
           <button type="submit" name="logIn" class="btn btn-primary shadow-sm">Submit</button>

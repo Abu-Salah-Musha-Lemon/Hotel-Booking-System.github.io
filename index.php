@@ -6,8 +6,8 @@
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>ASML Hotel - Home</title>
 	<?php include_once "./inc/link.php"?>
+	<title><?php echo $setting_r['site_title_db']?> - Home</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 	<style>
 		.availability-form {
@@ -95,6 +95,78 @@
 
 	<div class="container">
 		<div class="row">
+<?php 
+$rooms ="SELECT * FROM `rooms`";
+$result = mysqli_query($con,$rooms);
+if (mysqli_num_rows($result)==1) {
+	while ($rows = mysqli_fetch_assoc($result)>0) {
+		echo <<<data
+
+		data;
+	}
+}
+// echo $result;
+
+?>
+			<div class="col-lg-4 col-md-6 my-3">
+
+				<div class="card border-0 shadow-sm" style="width: 350px; margin: auto;">
+					<img src="$row['img']" style="height: 300px ; object-fit: cover;" class="card-img-top" alt="...">
+
+					<div class="card-body">
+						<h5 class="card-title">$row['name']</h5>
+						<h6 class="mb-4">$ $row['price'] per night</h6>
+
+						<div class="features mb-4">
+							<h6 class="mb-1">Features</h6>
+							<span class="badge rounded-pill bg-light text-dark text-wrap">
+								$row['features_id']
+							</span>
+							<span class="badge rounded-pill bg-light text-dark text-wrap">
+								1 Bathroom
+							</span>
+							<span class="badge rounded-pill bg-light text-dark text-wrap">
+								1 Balcony
+							</span>
+							<span class="badge rounded-pill bg-light text-dark text-wrap">
+								3 Sofa
+							</span>
+						</div>
+
+						<div class="facilities mb-4">
+							<h6 class="mb-1">Features</h6>
+							<span class="badge rounded-pill bg-light text-dark text-wrap">
+								wifi
+							</span>
+							<span class="badge rounded-pill bg-light text-dark text-wrap">
+								Telephone
+							</span>
+							<span class="badge rounded-pill bg-light text-dark text-wrap">
+								AC
+							</span>
+							<span class="badge rounded-pill bg-light text-dark text-wrap">
+								Room header
+							</span>
+						</div>
+
+						<div class="rating mb-4">
+							<h6 class="mb-1">Rating</h6>
+							<span class="badge rounded-pill bg-light text-dark text-wrap">
+								<i class="bi bi-star-fill text-warning"></i>
+								<i class="bi bi-star-fill text-warning"></i>
+								<i class="bi bi-star-fill text-warning"></i>
+								<i class="bi bi-star-fill text-warning"></i>
+								<i class="bi bi-star-fill text-warning"></i>
+							</span>
+						</div>
+						<div class="d-flex justify-content-between mb-2">
+							<a href="#" class="btn btn-sm text-white custom-bg shadow-none">Book Now</a>
+							<a href="#" class="btn btn-sm btn-outline-dark shadow-none">More Details</a>
+
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="col-lg-4 col-md-6 my-3">
 
 				<div class="card border-0 shadow-sm" style="width: 350px; margin: auto;">
@@ -272,6 +344,8 @@
 					</div>
 				</div>
 			</div>
+
+
 			<div class="col-lg-12 text-center mt-5">
 				<a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Rooms >>></a>
 			</div>

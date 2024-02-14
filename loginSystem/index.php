@@ -1,10 +1,15 @@
 <?php
 $con = mysqli_connect('localhost','root','','test2') or die('connection failed');
 // print_r($con);
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 if (isset($_POST['submit'])) {
    $name = mysqli_real_escape_string($con,$_POST['name']);
    $email = mysqli_real_escape_string($con,$_POST['email']);
    $password = mysqli_real_escape_string($con,$_POST['password']);
+   $v_code = bin2hex(random_bytes(16));
   //  $password =$_POST['password'];
 
   $query = "SELECT * FROM`login`";
@@ -29,8 +34,16 @@ if (isset($_POST['submit'])) {
                 </div>
             alert;
        }else{
-        $insert = "INSERT INTO `login`( `name`, `email`, `password`) VALUES ('{$name}', '{$email}','{$password}')";
-        $re2 = mysqli_query($con,$insert);
+        $insert = "INSERT INTO `login`( `name`, `email`, `password`,`is_verify`, `v_code`) VALUES ('{$name}', '{$email}','{$password}','{$v_code}','0')";
+        if (mysqli_query($con,$insert)&& mailSender($_POST['email'],$v_code)) {
+          echo <<<data
+            <script>alert('Registration Successfully')</script>
+          data;
+        }else {
+          echo <<<data
+            <script>alert('server Down ')</script>
+          data;
+        }
        }
      }
    } else {
@@ -38,6 +51,53 @@ if (isset($_POST['submit'])) {
    }
 }
 
+function mailSender($email,$v_code)
+{
+  require './PHPMailer/Exception.php';
+  require './PHPMailer/PHPMailer.php';
+  require './PHPMailer/SMTP.php';
+  $em = 'abusalahmusha512@gmail.com';
+  // $pass = 'jpylugacdgatmrzf';
+  $pass ='ktcw tayb ndbz swmt';
+
+  //Create an instance; passing `true` enables exceptions
+  $mail = new PHPMailer(true);
+
+  try {
+
+    $mail->isSMTP();                                            //Send using SMTP
+    // $mail->Host       = 'localhost';                     //Set the SMTP server to send through
+    // $mail->Host       = 'smtp.google.com';                     //Set the SMTP server to send through
+    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+    $mail->Username   = 'abusalahmusha512@gmail.com';                     //SMTP username
+    $mail->Password   = 'ktcwtaybndbzswmt';                               //SMTP password
+    // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+    //Recipients
+    $mail->setFrom('abusalahmusha512@gmail.com', 'ASMLab');
+    $mail->addAddress($email);     //Add a recipient
+
+    //Content
+    $mail->isHTML(true);                                  //Set email format to HTML
+    $mail->Subject = 'Email verification for ASMLab';
+    $mail->Body    = "
+      click the link below to verify the email address 
+      <a href='http://localhost/Hotel-Booking/Hotel-Booking-System.io/loginsystem/verify.php?email=$email&is_verify=$v_code'>veryfy</a>
+    ";
+
+
+    $mail->send();
+    // echo 'Message has been sent';
+    echo true;
+  } catch (Exception $e) {
+    // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    echo false;
+  }
+
+}
 
 ?>
 
