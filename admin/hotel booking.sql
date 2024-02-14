@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2023 at 12:44 PM
+-- Generation Time: Feb 14, 2024 at 07:05 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -105,9 +105,10 @@ CREATE TABLE `facilities` (
 
 INSERT INTO `facilities` (`sr_no`, `db_name`, `db_icon`, `db_desc`) VALUES
 (25, 'wifi', 'IMG_63577.svg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#039;Content her'),
-(26, 'tv', 'IMG_21637.svg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#039;Content her'),
-(27, 'ac', 'IMG_81257.svg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#039;Content her'),
-(28, 'fire', 'IMG_21478.svg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#039;Content her');
+(26, 'tv', 'IMG_21637.svg', 'Standard communication and entertainment options.'),
+(27, 'ac', 'IMG_81257.svg', 'Essential for comfort, especially in warm climates.\n'),
+(28, 'fire', 'IMG_21478.svg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#039;Content her'),
+(29, 'Good Showers:', 'IMG_18761.svg', 'A refreshing shower with consistent water pressure and temperature.');
 
 -- --------------------------------------------------------
 
@@ -125,8 +126,18 @@ CREATE TABLE `features` (
 --
 
 INSERT INTO `features` (`sr_no`, `db_fea_name`) VALUES
-(7, 'leon'),
-(8, 'leon');
+(7, 'Toiletries'),
+(8, 'Personal Care Items'),
+(9, 'Coffee Kit'),
+(10, 'Tissue Box'),
+(11, 'athrobes and Slippers'),
+(12, 'ast Wireless Connectivity (Wi-Fi)'),
+(13, 'Smart Rooms &amp; Smart Technology'),
+(14, 'USB Charger Ports &amp; Universal Plug-ins'),
+(15, 'Smart TV with Complimentary Movie Library'),
+(16, 'In-Room Coffee Machine'),
+(17, 'Music Player with Wireless Connection'),
+(18, 'Cove Lighting');
 
 -- --------------------------------------------------------
 
@@ -151,9 +162,12 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`sr_no`, `name`, `area`, `price`, `quantity`, `adult`, `child`, `desc`, `status`) VALUES
-(36, 'adf', 123, 300, 2, 4, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, reiciendis! Fugiat tempora maxime, ipsum dolorem, sed corrupti delectus, nihil eveniet rem provident aut est sit! Ullam quisquam laboriosam assumenda vero.', 0),
-(37, 'B02', 240, 400, 3, 3, 2, 'adf', 1),
-(38, 'B03', 123, 123, 2, 2, 1, 'sdf', 1);
+(36, 'adf', 123, 300, 2, 4, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, reiciendis! Fugiat tempora maxime, ipsum dolorem, sed corrupti delectus, nihil eveniet rem provident aut est sit! Ullam quisquam laboriosam assumenda vero.', 1),
+(37, 'B02', 240, 400, 3, 3, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, reiciendis! Fugiat tempora maxime, ipsum dolorem, sed corrupti delectus, nihil eveniet rem provident aut est sit! Ullam quisquam laboriosam assumenda vero.', 0),
+(38, 'B03', 123, 123, 2, 2, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, reiciendis! Fugiat tempora maxime, ipsum dolorem, sed corrupti delectus, nihil eveniet rem provident aut est sit! Ullam quisquam laboriosam assumenda vero.', 0),
+(39, 'A01', 200, 700, 4, 2, 3, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, reiciendis! Fugiat tempora maxime, ipsum dolorem, sed corrupti delectus, nihil eveniet rem provident aut est sit! Ullam quisquam laboriosam assumenda vero.', 0),
+(40, 'D4', 200, 200, 2, 3, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, reiciendis! Fugiat tempora maxime, ipsum dolorem, sed corrupti delectus, nihil eveniet rem provident aut est sit! Ullam quisquam laboriosam assumenda vero.', 0),
+(41, 'D5', 200, 200, 2, 3, 2, 'ipsum dolor sit amet consectetur adipisicing elit. Debitis, reiciendis! Fugiat tempora maxime, ipsum dolorem, sed corrupti delectus, nihil eveniet rem provident aut est sit! Ullam quisquam laboriosam assumenda vero.', 0);
 
 -- --------------------------------------------------------
 
@@ -174,7 +188,18 @@ CREATE TABLE `rooms_facilities` (
 INSERT INTO `rooms_facilities` (`sr_no`, `rooms_id`, `facilities_id`) VALUES
 (10, 36, 25),
 (11, 37, 25),
-(12, 38, 25);
+(12, 38, 25),
+(13, 39, 25),
+(14, 39, 26),
+(15, 39, 27),
+(16, 39, 28),
+(17, 40, 25),
+(18, 40, 26),
+(19, 40, 27),
+(20, 40, 28),
+(21, 41, 25),
+(22, 41, 26),
+(23, 41, 27);
 
 -- --------------------------------------------------------
 
@@ -195,7 +220,15 @@ CREATE TABLE `rooms_features` (
 INSERT INTO `rooms_features` (`sr_no`, `rooms_id`, `features_id`) VALUES
 (2, 36, 7),
 (3, 37, 7),
-(4, 38, 7);
+(4, 38, 7),
+(5, 39, 9),
+(6, 40, 7),
+(7, 40, 8),
+(8, 40, 9),
+(9, 41, 7),
+(10, 41, 10),
+(11, 41, 12),
+(12, 41, 14);
 
 -- --------------------------------------------------------
 
@@ -215,7 +248,7 @@ CREATE TABLE `setting` (
 --
 
 INSERT INTO `setting` (`sr_no`, `site_title_db`, `site_about_db`, `shutdown_db`) VALUES
-(1, 'ASML', 'Welcome to asmL hotel', 0);
+(1, 'ASM Lab', 'Our travel website combines stunning photography, enticing summaries of destinations, and practical tips. Discover hotel recommendations, explore recreation activities, and immerse yourself in arts and culture. Whether you’re planning a city escape or an exotic adventure, we’ve got you covered. From packing guides to public transport info, we simplify your journey. Trust us to inspire your wanderlust and empower your travel plans. 🌎✈️', 1);
 
 -- --------------------------------------------------------
 
@@ -237,6 +270,37 @@ INSERT INTO `team_details` (`sr_no`, `tm_name_db`, `tm_picture_db`) VALUES
 (20, 'leon', 'IMG_30180.jpg'),
 (21, 'lemon', 'IMG_34294.jpg'),
 (22, 'redoy', 'IMG_11467.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_cred`
+--
+
+CREATE TABLE `user_cred` (
+  `sr_no` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `phone` varchar(100) NOT NULL,
+  `pincode` int(11) NOT NULL,
+  `dob` date NOT NULL,
+  `profile` int(11) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `is_verified` int(11) NOT NULL DEFAULT 0,
+  `token` varchar(200) NOT NULL,
+  `t_expire` date NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `datentime` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_cred`
+--
+
+INSERT INTO `user_cred` (`sr_no`, `name`, `email`, `address`, `phone`, `pincode`, `dob`, `profile`, `password`, `is_verified`, `token`, `t_expire`, `status`, `datentime`) VALUES
+(1, 'lemon ', 'lemon@gmail.com', 'XYZ, JatraBark, Dhaka 1204', '02212345555', 123123, '2024-02-07', 0, '1234', 0, '', '0000-00-00', 1, 0),
+(2, 'leon', 'leon@gmail.com', 'XYZ, JatraBark, Dhaka 1204', '1000000000', 123123, '2024-02-10', 0, 'leon', 1, '', '0000-00-00', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -323,6 +387,12 @@ ALTER TABLE `team_details`
   ADD PRIMARY KEY (`sr_no`);
 
 --
+-- Indexes for table `user_cred`
+--
+ALTER TABLE `user_cred`
+  ADD PRIMARY KEY (`sr_no`);
+
+--
 -- Indexes for table `user_query`
 --
 ALTER TABLE `user_query`
@@ -354,31 +424,31 @@ ALTER TABLE `contact_details`
 -- AUTO_INCREMENT for table `facilities`
 --
 ALTER TABLE `facilities`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `features`
 --
 ALTER TABLE `features`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `rooms_facilities`
 --
 ALTER TABLE `rooms_facilities`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `rooms_features`
 --
 ALTER TABLE `rooms_features`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `setting`
@@ -391,6 +461,12 @@ ALTER TABLE `setting`
 --
 ALTER TABLE `team_details`
   MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `user_cred`
+--
+ALTER TABLE `user_cred`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user_query`
