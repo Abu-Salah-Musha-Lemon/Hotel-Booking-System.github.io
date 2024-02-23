@@ -14,7 +14,7 @@ adminLogin();
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <?php require_once './inc/link.php' ?>
+  <?php require_once './inc/link.php'; ?>
   <title><?php //echo $setting_r['site_title_db']?> Admin - Rooms </title>
 </head>
 
@@ -148,7 +148,7 @@ adminLogin();
                           <div>
                         </div>
 
-                        <input type="hidden" name="room_id">
+                        <input type="" name="room_id">
 
                         <div class="modal-footer">
                           <button type="reset" class="btn text-secondary shadow-none"
@@ -161,9 +161,9 @@ adminLogin();
                 </div>
               </div>
             </div>                
-                <tbody id="rooms_data">
-                </tbody>
-              </table>
+            <tbody id="rooms_data">
+            </tbody>
+          </table>
              </div>
 
             <!-- Add room  modal  -->
@@ -363,9 +363,8 @@ adminLogin();
       xhr.onload = function() {
 
         let data = JSON.parse(this.responseText);
-        console.log(data);
         let roomData = data.roomData;
-
+        
         // Set values in the form
         edit_rooms_s_form.elements['name'].value = roomData.name;
         edit_rooms_s_form.elements['area'].value = roomData.area;
@@ -376,12 +375,12 @@ adminLogin();
         edit_rooms_s_form.elements['desc'].value = roomData.desc;
 
         // Set hidden field for room_id
-        edit_rooms_s_form.elements['room_id'].value = roomData.id;
+        edit_rooms_s_form.elements['room_id'].value = roomData.sr_no;
 
 
         edit_rooms_s_form.elements['facilities'].forEach(el=>{
           if (data.facilities.includes(Number(el.value))) {
-          el.checked = true;}
+          el.checked = true}
         })
         edit_rooms_s_form.elements['features'].forEach(el=>{
           if (data.features.includes(Number(el.value))) {
@@ -399,9 +398,9 @@ edit_rooms_s_form.addEventListener('submit', function(e) {
       edit_rooms_details()
     })
 
-function edit_rooms_details() {
+    function edit_rooms_details() {
       let data = new FormData();
-
+      console.log(data);
       data.append('edit_rooms', '');///new class passed
       data.append('room_id', edit_rooms_s_form.elements['room_id'].value);
       data.append('name', edit_rooms_s_form.elements['name'].value);
@@ -411,40 +410,91 @@ function edit_rooms_details() {
       data.append('adult', edit_rooms_s_form.elements['adult'].value);
       data.append('children', edit_rooms_s_form.elements['children'].value);
       data.append('desc', edit_rooms_s_form.elements['desc'].value);
-      let feature = [];
+      
+      let features = [];
       edit_rooms_s_form.querySelectorAll('[name="features"]:checked').forEach(el => {
-        feature.push(el.value);
+       console.log(features.push(el.value))
       });
 
       let facilities = [];
       edit_rooms_s_form.querySelectorAll('[name="facilities"]:checked').forEach(el => {
-        facilities.push(el.value);
+        console.log( facilities.push(el.value));
       });
 
-      data.append('features', JSON.stringify(feature));
+      data.append('features', JSON.stringify(features));
       data.append('facilities', JSON.stringify(facilities));
 
       let xhr = new XMLHttpRequest();
       xhr.open('POST', "ajax/rooms_crud.php", true);
 
       xhr.onload = function() {
-        // module hidden  
-        let myModal = document.getElementById('edit_rooms_s');
-        let modal = bootstrap.Modal.getInstance(myModal);
-        modal.hide();
-        // console.log(this.responseText);
+
+        console.log(this.responseText);
         if (this.responseText == 1) {
           alert('error', 'Server failed!');
         } else {
           alert('success', 'Room details Update successfully!');
           edit_rooms_s_form.reset()
           get_all_rooms()
+                  // module hidden  
+        let myModal = document.getElementById('edit_rooms_s');
+        let modal = bootstrap.Modal.getInstance(myModal);
+        modal.hide();
         }
       }
       xhr.send(data);
 
     }
 
+
+//   document.addEventListener('DOMContentLoaded', function() {
+//     var editRoomsForm = document.querySelector('.edit_rooms_s_form');
+//     editRoomsForm.addEventListener('submit', function(e) {
+//         e.preventDefault();
+//         editRoomsDetails();
+//     });
+
+//     function editRoomsDetails() {
+//         let data = new FormData(editRoomsForm);
+//         data.append('edit_rooms', ''); ///new class passed
+//         data.append('room_id', edit_rooms_s_form.elements['room_id'].value);
+//         data.append('name', edit_rooms_s_form.elements['name'].value);
+//         data.append('area', edit_rooms_s_form.elements['area'].value);
+//         data.append('price', edit_rooms_s_form.elements['price'].value);
+//         data.append('quantity', edit_rooms_s_form.elements['quantity'].value);
+//         data.append('adult', edit_rooms_s_form.elements['adult'].value);
+//         data.append('children', edit_rooms_s_form.elements['children'].value);
+//         data.append('desc', edit_rooms_s_form.elements['desc'].value); 
+
+//         let features = [];
+//         editRoomsForm.querySelectorAll('[name="features"]:checked').forEach(el => {
+//             console.log( features.push(el.value));
+//         });
+
+//         let facilities = [];
+//         editRoomsForm.querySelectorAll('[name="facilities"]:checked').forEach(el => {
+//             facilities.push(el.value);
+//         });
+
+//         data.append('features', JSON.stringify(features));
+//         data.append('facilities', JSON.stringify(facilities));
+
+//         let xhr = new XMLHttpRequest();
+//         xhr.open('POST', "ajax/rooms_crud.php", true);
+
+//         xhr.onload = function() {
+//             if (this.responseText.trim() === '1') {
+//                 alert('success', 'Room details updated successfully!');
+//                 editRoomsForm.reset();
+//                 get_all_rooms();
+//             } else {
+//                 alert('error', 'Server failed!');
+//             }
+//         };
+
+//         xhr.send(data);
+//     }
+// });
 
     // toggle button
     function toggle_status(id, val) {

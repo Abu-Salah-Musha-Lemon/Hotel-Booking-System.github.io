@@ -137,73 +137,65 @@ if(isset($_POST['get_rooms'])){
 
 }
 
+// if (isset($_POST['edit_rooms'])) {
+//    try {
+     
 
-if (isset($_POST['edit_rooms'])) {        
+//        $facilities = json_decode($_POST['facilities']);
+//        $features = json_decode($_POST['features']);
 
-   $facilities = json_decode($_POST['facilities']);
-   $features = json_decode($_POST['features']);
+//        $frm_data = filtration($_POST); // Assuming filtration function is defined
 
-   $frm_data = filtration($_POST); // Assuming filtration function is defined
-   $q = "UPDATE `rooms` SET `name`=?,`area`=?,`price`=?,`quantity`=?,
-   `adult`=?,`child`=?,`desc`=? WHERE `sr_no`=?";
-   $value = [$frm_data['name'],$frm_data['area'],$frm_data['price'],$frm_data['quantity'],
-   $frm_data['adult'],$frm_data['children'],$frm_data['desc'],$frm_data['room_id']];
+//        $q = "UPDATE `rooms` SET `name`=?, `area`=?, `price`=?, `quantity`=?,
+//              `adult`=?, `child`=?, `desc`=? WHERE `sr_no`=?";
+//        $value = [
+//            $frm_data['name'], $frm_data['area'], $frm_data['price'], $frm_data['quantity'],
+//            $frm_data['adult'], $frm_data['children'], $frm_data['desc'], $frm_data['room_id']
+//        ];
 
-   if (update($q, $value, 'siiiiisi')) {
-   $flag = 1;
-   }
+//        $flag = update($q, $value, 'siiiiisi'); // Assuming update function is defined
+//       //  print_r($flag);
+//       //  $del_facilities = delete("DELETE FROM `rooms_facilities` WHERE `rooms_id`=?", [$frm_data['room_id']], 'i');
+//       //  $del_features = delete("DELETE FROM `rooms_features` WHERE `rooms_id`=?", [$frm_data['room_id']], 'i');
+//       $uFeatures = "UPDATE `rooms_facilities` SET`rooms_id`='?',`facilities_id`='?' WHERE  `sr_no`='?'";
+//       $uValue = [$frm_data['rooms_facilities']];
+//       // $update_features = update();
 
+//       //  if ($flag && $del_features && $del_facilities) {
+//       //      $q2 = "INSERT INTO `rooms_facilities`(`rooms_id`, `facilities_id`) VALUES (?, ?)";
+//       //      $flag = insert($q2, $facilities, 'ii'); // Assuming insert_multiple function is defined
 
-   $del_facilities = delete("DELETE FROM `rooms_facilities` WHERE `rooms_id`=?",[$frm_data['room_id']],'i');
-   $del_features = delete("DELETE FROM `rooms_features` WHERE `rooms_id`=?",[$frm_data['room_id']],'i');
+//       //      $q3 = "INSERT INTO `rooms_features`(`rooms_id`, `features_id`) VALUES (?, ?)";
+//       //      $flag = insert($q3, $features, 'ii'); // Assuming insert_multiple function is defined
+//       //      echo $flag;
+//       //  } else {
 
+//       //    echo 'query failed';
+//       //  }
+//          $flag = 0;
+//        mysqli_close($con);
+//    } catch (Exception $e) {
+//        echo $e->getMessage();
+//    }
+// }
 
-   if (!($del_features&&$del_facilities)) {
-   $flag= 0;
-   }
+if (isset($_POST['edit_rooms'])) {
+   
+   $frm_data = filtration($_POST);
 
-   $q2="INSERT INTO `rooms_facilities`( `rooms_id`, `facilities_id`) VALUES (?,?)";
-   if ($stmt = mysqli_prepare($con, $q2)) {
-   foreach ($facilities as $f) {
-   if (mysqli_stmt_bind_param($stmt, 'ii',$frm_data['room_id'], $f)) {
-   // binding successful, proceed to execute
-   mysqli_stmt_execute($stmt);
-   } else {
-   // binding failed, report error
-   echo mysqli_stmt_error($stmt);
-   exit;
-   }
-   }
-   $flag = 1;
-   mysqli_stmt_close($stmt);
-   } else {
-   $flag = 0;
-   echo 0; // Failed to prepare query for features
-   exit;
-   }
-
-
-   $q3="INSERT INTO `rooms_features`( `rooms_id`, `features_id`) VALUES (?,?)";
-   if ($stmt = mysqli_prepare($con, $q3)) {
-   foreach ($features as $f) {
-   if (mysqli_stmt_bind_param($stmt, 'ii',$frm_data['room_id'], $f)) {
-   // binding successful, proceed to execute
-   mysqli_stmt_execute($stmt);
-   } else {
-   // binding failed, report error
-   echo mysqli_stmt_error($stmt);
-   exit;
-   }
-   }
-   $flag = 1;
-   mysqli_stmt_close($stmt);
-   } else {
-   $flag = 0;
-   echo 0; // Failed to prepare query for features
-   exit;
-   }
-
-
+   // var_dump($frm_data);
+       $update = "UPDATE `rooms` SET `name`=?, `area`=?, `price`=?, `quantity`=?,
+                  `adult`=?, `child`=?, `desc`=? WHERE `sr_no`=?";
+      
+$value = [
+             $frm_data['name'], $frm_data['area'], $frm_data['price'], $frm_data['quantity'],
+             $frm_data['adult'], $frm_data['children'], $frm_data['desc'], $frm_data['room_id']
+         ];
+        print_r($value);
+      $result = update($update,$value,'siiiiisi');
+      echo 'error</br>';
+      print_r($result);
+      var_dump($result); 
 }
 
 // toggle button

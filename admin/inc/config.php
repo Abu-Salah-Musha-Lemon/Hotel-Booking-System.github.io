@@ -87,8 +87,8 @@ function delete($sql, $values, $datatype){
       mysqli_stmt_close($stmt);
       return $res;
     }else{
-      mysqli_stmt_close($stmt);
       die('Query cannot be existed -delete');
+      mysqli_stmt_close($stmt);
     }
   }else{
     die('Query cannot be prepared -delete');
