@@ -148,7 +148,7 @@ adminLogin();
                           <div>
                         </div>
 
-                        <input type="" name="room_id">
+                        <input type="hidden" name="room_id">
 
                         <div class="modal-footer">
                           <button type="reset" class="btn text-secondary shadow-none"

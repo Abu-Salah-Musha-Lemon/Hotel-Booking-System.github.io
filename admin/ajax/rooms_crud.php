@@ -181,21 +181,23 @@ if(isset($_POST['get_rooms'])){
 
 if (isset($_POST['edit_rooms'])) {
    
-   $frm_data = filtration($_POST);
+   $name = mysqli_real_escape_string($con,$_POST['name']);
+   $area = mysqli_real_escape_string($con,$_POST['area']);
+   $price = mysqli_real_escape_string($con,$_POST['price']);
+   $quantity = mysqli_real_escape_string($con,$_POST['quantity']);
+   $adult = mysqli_real_escape_string($con,$_POST['adult']);
+   $child = mysqli_real_escape_string($con,$_POST['children']);
+   $desc = mysqli_real_escape_string($con,$_POST['desc']);
+   $room_id = mysqli_real_escape_string($con,$_POST['room_id']);
+       $facilities = json_decode($_POST['facilities']);
+       $features = json_decode($_POST['features']);
+       $update = "UPDATE `rooms` SET `name`='$name', `area`='$area', `price`='$price', `quantity`='$quantity',
+                  `adult`='$adult', `child`='$child', `desc`='$desc' WHERE `sr_no`='$room_id'";
+   $result = mysqli_query($con,$update) or die('error found ');
 
-   // var_dump($frm_data);
-       $update = "UPDATE `rooms` SET `name`=?, `area`=?, `price`=?, `quantity`=?,
-                  `adult`=?, `child`=?, `desc`=? WHERE `sr_no`=?";
-      
-$value = [
-             $frm_data['name'], $frm_data['area'], $frm_data['price'], $frm_data['quantity'],
-             $frm_data['adult'], $frm_data['children'], $frm_data['desc'], $frm_data['room_id']
-         ];
-        print_r($value);
-      $result = update($update,$value,'siiiiisi');
-      echo 'error</br>';
-      print_r($result);
-      var_dump($result); 
+$uFacilities = "UPDATE `rooms_facilities` SET `facilities_id`='$facilities' WHERE `rooms_id`='$room_id' ";
+$resFacilities= mysqli_query($con,$uFacilities);
+
 }
 
 // toggle button
