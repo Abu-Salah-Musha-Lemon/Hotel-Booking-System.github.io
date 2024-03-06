@@ -15,10 +15,10 @@ adminLogin();
   <?php require_once ('./inc/link.php'); ?>
 </head>
 
-<body class="bg-light">
+<body class="bg-light" >
 <?php require_once("inc/header.php"); ?>
 
-  <div class="container-fluit" id="main-content">
+  <div class="container-fluid" id="main-content">
     <div class="row">
       <div class="col-lg-10 ms-auto p-4 overflow-hidden">
 

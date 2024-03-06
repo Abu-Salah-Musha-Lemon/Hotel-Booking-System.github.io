@@ -155,23 +155,23 @@ if(isset($_POST['get_rooms'])){
 
 //        $flag = update($q, $value, 'siiiiisi'); // Assuming update function is defined
 //       //  print_r($flag);
-//       //  $del_facilities = delete("DELETE FROM `rooms_facilities` WHERE `rooms_id`=?", [$frm_data['room_id']], 'i');
-//       //  $del_features = delete("DELETE FROM `rooms_features` WHERE `rooms_id`=?", [$frm_data['room_id']], 'i');
+//        $del_facilities = delete("DELETE FROM `rooms_facilities` WHERE `rooms_id`=?", [$frm_data['room_id']], 'i');
+//        $del_features = delete("DELETE FROM `rooms_features` WHERE `rooms_id`=?", [$frm_data['room_id']], 'i');
 //       $uFeatures = "UPDATE `rooms_facilities` SET`rooms_id`='?',`facilities_id`='?' WHERE  `sr_no`='?'";
 //       $uValue = [$frm_data['rooms_facilities']];
-//       // $update_features = update();
+//       $update_features = update();
 
-//       //  if ($flag && $del_features && $del_facilities) {
-//       //      $q2 = "INSERT INTO `rooms_facilities`(`rooms_id`, `facilities_id`) VALUES (?, ?)";
-//       //      $flag = insert($q2, $facilities, 'ii'); // Assuming insert_multiple function is defined
+//        if ($flag && $del_features && $del_facilities) {
+//            $q2 = "INSERT INTO `rooms_facilities`(`rooms_id`, `facilities_id`) VALUES (?, ?)";
+//            $flag = insert($q2, $facilities, 'ii'); // Assuming insert_multiple function is defined
 
-//       //      $q3 = "INSERT INTO `rooms_features`(`rooms_id`, `features_id`) VALUES (?, ?)";
-//       //      $flag = insert($q3, $features, 'ii'); // Assuming insert_multiple function is defined
-//       //      echo $flag;
-//       //  } else {
+//            $q3 = "INSERT INTO `rooms_features`(`rooms_id`, `features_id`) VALUES (?, ?)";
+//            $flag = insert($q3, $features, 'ii'); // Assuming insert_multiple function is defined
+//            echo $flag;
+//        } else {
 
-//       //    echo 'query failed';
-//       //  }
+//          echo 'query failed';
+//        }
 //          $flag = 0;
 //        mysqli_close($con);
 //    } catch (Exception $e) {
